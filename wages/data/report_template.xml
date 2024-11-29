@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Asset barcode template-->
+    <template id="wages_request_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div style="margin-top: 0" class="content">
+                    <table class="table table-condensed" style="width: 100%;">
+                        <tr>
+                            <td style="width: 30%; text-align: right">
+                                <div class="text-right">
+                                    <img t-if="o.company_id.logo"
+                                         style="max-height:100px; max-width: 100%; width:auto"
+                                         t-att-src="'data:image/png;base64,'+o.company_id.logo.decode('utf-8')"
+                                         alt="Company Logo"/>
+                                </div>
+                            </td>
+                            <td style="width: 60%;">
+                                <div style="font-size: 20px; font-family: 'Times New Roman', Times, serif; margin-top: 0px; text-align: left; font-weight: bold">
+                                    <t t-esc="o.company_info().get('name')"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="padding-left: 220px; font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 14px;">
+                                <p>
+                                    P.O.BOX 11045 DAR ES SALAAM
+                                    <br/>
+                                    TANZANIA.
+                                    <br/>
+                                    TEL/FAX: +255-22-2185166
+                                    <br/>
+                                    OFFICE:
+                                    <t t-esc="o.company_info().get('phone')"/>
+                                    <br/>
+                                    EMAIL:
+                                    <t t-esc="o.company_info().get('email')"/>
+                                    <br/>
+                                </p>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 50px; font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 15px;">
+                                TIN NO:
+                                <t t-esc="o.company_info().get('vrn')"/>
+                                <br/>
+                                VAT:
+                                <t t-esc="o.company_info().get('vat')"/>
+                                <br/>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"
+                                style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 16px; text-align: center">
+                                WAGES REQUEST
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"
+                            >
+                                <!--                                OFFICE EXPENSES  style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 16px; text-align: center; text-decoration: underline"-->
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td style="padding-left: 50px; font-family: 'Times New Roman', Times, serif; font-size: 15px; font-weight: bold">
+                                Department:
+                                <t t-esc="o.requester_id.department_id.name"/>
+
+                            </td>
+                            <td style="padding-left: 220px; font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 14px;  font-weight: bold">
+                                Date:
+                                <t t-esc="o.date"/>
+
+                            </td>
+                            <br/>
+
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 50px; font-family: 'Times New Roman', Times, serif; font-size: 15px; font-weight: bold">
+                                <!--                                Site: ......................................-->
+                            </td>
+                            <td style="padding-left: 220px; font-family: 'Times New Roman', Times, serif; font-style: italic; font-size: 14px;  font-weight: bold">
+
+                                <br/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-condensed"
+                           style="margin-left: 50px; margin-top: 10px; width: 95%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="width: 5%;  height: 30px; background-color: #EAEAEA; border: 1px solid #000; text-align: center; font-size: 18px; font-weight: bold;">
+                                    S/N
+                                </td>
+                                <td style="width: 55%; height: 30px; background-color: #EAEAEA; border: 1px solid #000; text-align: center; font-size: 18px; font-weight: bold;">
+                                    Labour Type
+                                </td>
+                                <td style="width: 8%; height: 30px; background-color: #EAEAEA; border: 1px solid #000; text-align: center; font-size: 18px; font-weight: bold;">
+                                    Quantity
+                                </td>
+                                <td style="width: 20%; height: 30px; background-color: #EAEAEA; border: 1px solid #000; text-align: center; font-size: 18px; font-weight: bold;">
+                                    Unit Cost
+                                </td>
+                                <td style="width: 20%; height: 30px; background-color: #EAEAEA; border: 1px solid #000; text-align: center; font-size: 18px; font-weight: bold;">
+                                    Amount
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="counter" t-value="1"/>
+                            <t t-foreach="o.line_ids" t-as="line">
+                                <tr>
+                                    <td style="border: 1px solid #000; text-align: center;">
+                                        <!--                                        <span t-field="line.name"/>-->
+                                        <span t-esc="counter"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding-left: 8px;">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; padding-left: 8px;">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; text-align: right;  padding-right: 10px;">
+                                        <span t-field="line.unit_cost"/>
+                                    </td>
+                                    <td style="border: 1px solid #000; text-align: right; padding-right: 10px;">
+                                        <span t-field="line.total_cost"/>
+                                    </td>
+                                </tr>
+                                <t t-set="counter" t-value="counter + 1"/>
+                            </t>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="border: 1px solid #000; text-align: left;  font-weight: bold; background-color: #EAEAEA; height: 50px">
+                                    TOTAL
+                                </td>
+                                <td style="border: 1px solid #000; text-align: right; background-color: #EAEAEA; height: 50px">
+                                    <span t-field="o.total_amount"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-condensed"
+                           style="margin-left: 50px; margin-top: 50px; width: 95%; border-collapse: collapse;">
+                        <tr>
+                            <td style="font-weight: bold; height: 30px;">Requested by:
+                                <span t-field="o.requester_id.name"/>
+                            </td>
+
+                            <t t-if="o.state in ['checked_ss', 'checked_hr', 'recommended','endorsed','payment_initiated','payment_confirmed', 'approve']">
+                                <td style="font-weight: bold; height: 30px;">Checked by:
+                                    <span t-field="o.requester_id.parent_id.name"/>
+                                </td>
+                            </t>
+                        </tr>
+                         <tr>
+                            <t t-if="o.state in ['checked_hr', 'recommended','endorsed','payment_initiated','payment_confirmed', 'approve']">
+                                <td style="font-weight: bold; height: 30px;">Checked by:
+                                    <span t-field="o.requester_id.department_id.branch_id.hr_manager_id.name"/>
+                                </td>
+                            </t>
+                              <t t-if="o.state in ['approve']">
+                                <td style="font-weight: bold; height: 30px;">Approved by:
+<!--                                    <span t-field="o.requester_id.parent_id.name"/>-->
+                                </td>
+                            </t>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

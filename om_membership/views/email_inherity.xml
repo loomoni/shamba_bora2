@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="email_inherity_form_view_id" model="ir.ui.view">
+        <field name="name">email.inherity</field>
+        <field name="model">mail.mass_mailing.contact</field>
+        <field name="inherit_id" ref="mass_mailing.view_mail_mass_mailing_contact_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+<!--            <xpath expr="//field[@name='create_date']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='message_bounce']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+             <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//field[@name='title_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//field[@name='company_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+             </xpath>
+            <xpath expr="//field[@name='company_name']" position="after">
+                <field name="contact_name"/>
+             </xpath>
+            <xpath expr="//field[@name='contact_name']" position="after">
+                <field name="email"/>
+             </xpath>
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+             </xpath>
+            <label for="email" position="before">
+                <field name="name"/>
+                <field name="company_name"/>
+            </label>
+            <label for="tag_ids" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <label for="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+             <label for="email" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+<!--            <label for="message_bounce" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </label>-->
+<!--            <label for="message_bounce" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </label>-->
+        </field>
+    </record>
+</odoo>

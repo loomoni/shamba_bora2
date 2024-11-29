@@ -1,0 +1,94 @@
+<odoo>
+
+    <record id="crossovered_budget_version_tree_view" model="ir.ui.view">
+      <field name="name">crossovered.budget.version.view</field>
+      <field name="model">crossovered.budget.version</field>
+      <field name="arch" type="xml">
+          <tree string="Department Budget Versions">
+              <field name="name"/>
+              <field name="version_number"/>
+              <field name="amount_total"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="crossovered_budget_version_search_view" model="ir.ui.view">
+    <field name="name">crossovered.budget.version.search.view</field>
+     <field name="model">crossovered.budget.version</field>
+    <field name="arch" type="xml">
+        <search string="budget versions search">
+            <field name="name" string="Version Name" filter_domain="[('name','ilike',self)]"/>
+            <field name="version_number" string="Version Number" filter_domain="[('version_number','ilike',self)]"/>
+        </search>
+    </field>
+    </record>
+
+   <record id="crossovered_budget_version_form_view" model="ir.ui.view">
+        <field name="name">crossovered.budget.version.form.view</field>
+        <field name="model">crossovered.budget.version</field>
+        <field name="arch" type="xml">
+             <form string="Budget">
+                <sheet string="Budget">
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Budget Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <label for="date_from" string="Period"/>
+                            <div>
+                                <field name="date_from" class="oe_inline"/>
+                                -
+                                <field name="date_to" class="oe_inline"  nolabel="1"/>
+                            </div>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Budget Lines">
+                            <field name="line_ids" context="{'special_display_name': True}">
+                                <tree string="Budget Lines" editable="bottom">
+                                    <field name="budget_group_id"/>
+                                    <field name="budget_code"/>
+                                    <field name="account_id"/>
+                                    <field name="department_id" invisible="1"/>
+                                    <field name="general_budget_id" invisible="1"/>
+                                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" invisible="1"/>
+                                    <field name="budget_line_desc"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="planned_amount" string="Projected Amount" sum="Projected Amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_budget_version" model="ir.actions.act_window">
+        <field name="name">Department Budget Versions</field>
+        <field name="res_model">crossovered.budget.version</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Here is a list of all department budget versions
+          </p>
+        </field>
+    </record>
+
+      <menuitem
+        parent="custom_budget_management.menu_root"
+        id="menu_budget_version"
+        action="action_budget_version"
+        sequence="8"
+        groups="custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+</odoo>

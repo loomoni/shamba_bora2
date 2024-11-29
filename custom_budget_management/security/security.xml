@@ -1,0 +1,205 @@
+<odoo>
+    <data>
+        <record id="budget_security_category" model="ir.module.category">
+            <field name="name">Budget</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="budget_hod" model="res.groups">
+            <field name="name">HOD</field>
+            <field name="category_id" ref="budget_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="budget_bm" model="res.groups">
+            <field name="name">Branch Manager</field>
+            <field name="category_id" ref="budget_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="budget_fm" model="res.groups">
+            <field name="name">Finance Manager</field>
+            <field name="category_id" ref="budget_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="budget_md" model="res.groups">
+            <field name="name">Managing Director</field>
+            <field name="category_id" ref="budget_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+        <record model="ir.rule" id="budget_access_hod">
+            <field name="name">Budget Access Rules HOD</field>
+            <field name="model_id" ref="model_crossovered_budget"/>
+            <field name="domain_force">[('department_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_hod'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_access_bm">
+            <field name="name">Budget Access Rules BM</field>
+            <field name="model_id" ref="model_crossovered_budget"/>
+            <field name="domain_force">[('department_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_access_fm">
+            <field name="name">Budget Access Rules FM</field>
+            <field name="model_id" ref="model_crossovered_budget"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_access_md">
+            <field name="name">Budget Access Rules MD</field>
+            <field name="model_id" ref="model_crossovered_budget"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+        <record model="ir.rule" id="annual_budget_access_bm">
+            <field name="name">Annual Budget Access Rules BM</field>
+            <field name="model_id" ref="model_annual_budget"/>
+            <field name="domain_force">[('branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="annual_budget_access_fm">
+            <field name="name">Annual Budget Access Rules FM</field>
+            <field name="model_id" ref="model_annual_budget"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="annual_budget_access_md">
+            <field name="name">Annual Budget Access Rules MD</field>
+            <field name="model_id" ref="model_annual_budget"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+        <record model="ir.rule" id="reallocate_budget_access_hod">
+            <field name="name">Reallocate Budget Access Rules HOD</field>
+            <field name="model_id" ref="model_budget_reallocation"/>
+            <field name="domain_force">[('employee_id.department_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_hod'))]"/>
+        </record>
+
+        <record model="ir.rule" id="reallocate_budget_access_bm">
+            <field name="name">Reallocate Budget Access Rules BM</field>
+            <field name="model_id" ref="model_budget_reallocation"/>
+            <field name="domain_force">[('annual_budget_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="reallocate_budget_access_fm">
+            <field name="name">Reallocate Budget Access Rules FM</field>
+            <field name="model_id" ref="model_budget_reallocation"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="reallocate_budget_access_md">
+            <field name="name">Reallocate Budget Access Rules MD</field>
+            <field name="model_id" ref="model_budget_reallocation"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+        <record model="ir.rule" id="suppliment_budget_access_bm">
+            <field name="name">Suppliment Budget Access Rules BM</field>
+            <field name="model_id" ref="model_budget_supplimentary"/>
+            <field name="domain_force">[('annual_budget_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="suppliment_budget_access_fm">
+            <field name="name">Suppliment Budget Access Rules FM</field>
+            <field name="model_id" ref="model_budget_supplimentary"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="suppliment_budget_access_md">
+            <field name="name">Suppliment Budget Access Rules MD</field>
+            <field name="model_id" ref="model_budget_supplimentary"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_version_access_bm">
+            <field name="name">Budget Version Access Rules BM</field>
+            <field name="model_id" ref="model_crossovered_budget_version"/>
+            <field name="domain_force">[('annual_budget_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_version_access_fm">
+            <field name="name">Budget Version Access Rules FM</field>
+            <field name="model_id" ref="model_crossovered_budget_version"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="budget_version_access_md">
+            <field name="name">Budget Version Access Rules MD</field>
+            <field name="model_id" ref="model_crossovered_budget_version"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_consolidated_access_bm">
+            <field name="name">Monthly Budget Consolidated Access Rules BM</field>
+            <field name="model_id" ref="model_monthly_budget_consolidated"/>
+            <field name="domain_force">[('branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_consolidated_access_fm">
+            <field name="name">Monthly Budget Consolidated Access Rules FM</field>
+            <field name="model_id" ref="model_monthly_budget_consolidated"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_consolidated_access_md">
+            <field name="name">Monthly Budget Consolidated Access Rules MD</field>
+            <field name="model_id" ref="model_monthly_budget_consolidated"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+
+
+        <record model="ir.rule" id="monthly_budget_request_access_hod">
+            <field name="name">Monthly Budget Request Access Rules HOD</field>
+            <field name="model_id" ref="model_monthly_budget_request"/>
+            <field name="domain_force">[('department_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_hod'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_request_access_bm">
+            <field name="name">Monthly Budget Request Access Rules BM</field>
+            <field name="model_id" ref="model_monthly_budget_request"/>
+            <field name="domain_force">[('annual_budget_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('budget_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_request_access_fm">
+            <field name="name">Monthly Budget Request Access Rules FM</field>
+            <field name="model_id" ref="model_monthly_budget_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_fm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="monthly_budget_request_access_md">
+            <field name="name">Monthly Budget Request Access Rules MD</field>
+            <field name="model_id" ref="model_monthly_budget_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('budget_md'))]"/>
+        </record>
+    </data>
+</odoo>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report
+            id="cash_request_id_pdf_print"
+            model="account.cash.request"
+            string="Cash Request"
+            menu="True"
+            report_type="qweb-pdf"
+            name="cash_requests.cash_request_template"
+            file="cash_requests.cash_request_template"
+    />
+
+</odoo>

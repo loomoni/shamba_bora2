@@ -1,0 +1,146 @@
+<odoo>
+
+    <record id="monthly_budget_request_tree_view" model="ir.ui.view">
+      <field name="name">monthly.budget.request.view</field>
+      <field name="model">monthly.budget.request</field>
+      <field name="arch" type="xml">
+          <tree string="Monthly Budget Request">
+              <field name="name"/>
+              <field name="department_id"/>
+              <field name="branch_id"/>
+              <field name="annual_budget_id"/>
+              <field name="dept_budget_id"/>
+              <field name="currency_id" invisible="1"/>
+              <field name="request_total"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="monthly_budget_request_search_view" model="ir.ui.view">
+        <field name="name">monthly.budget.request.search.view</field>
+        <field name="model">monthly.budget.request</field>
+        <field name="arch" type="xml">
+            <search string="Monthly Budget Request Search">
+                <field name="name" string="Monthly Budget Request" filter_domain="[('name','ilike',self)]"/>
+                <group name="groupby">
+                    <filter name="consolidated_monthly_budget_id_groupby" string="Consolidated Monthly Budget" context="{'group_by': 'consolidated_monthly_budget_id'}"/>
+                    <filter name="annual_budget_id_groupby" string="Annual Budget" context="{'group_by': 'annual_budget_id'}"/>
+                    <filter name="dept_budget_id_groupby" string="Department Budget" context="{'group_by': 'dept_budget_id'}"/>
+                    <filter name="branch_id_groupby" string="Branch" context="{'group_by': 'branch_id'}"/>
+                    <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+   <record id="monthly_budget_request_form_view" model="ir.ui.view">
+        <field name="name">monthly.budget.request.form.view</field>
+        <field name="model">monthly.budget.request</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                    <button name="action_submit" states="draft" string="Confirm" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_hod"/>
+                     <button name="action_reset" states="submit" string="Review" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submit,approved,reject"/>
+                </header>
+                <sheet>
+                    <group string="Monthly Budget Request">
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="name"/>
+                            <field name="date_start"/>
+                        </group>
+                        <group>
+                            <field name="consolidated_monthly_budget_id"  options="{'no_create': True,'no_open': True}" attrs="{'required': True}"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="branch_id"/>
+                        </group>
+                    </group>
+
+                    <group string="Annual Budget">
+                        <group>
+                            <field name="annual_budget_id"/>
+                        </group>
+                        <group>
+                            <field name="dept_budget_id"  options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+
+                    <group string="Total Amount To Request">
+                        <field name="currency_id" invisible="1"/>
+                        <field name="request_total" />
+                    </group>
+
+                    <notebook>
+                        <page string="Monthly Budget Request Lines">
+                            <field name="line_ids" context="{'default_monthly_budget_request_id': id, 'default_dept_budget_id': dept_budget_id}" attrs="{'readonly': [('state','in',['confirmed','approved'])]}">
+                                <tree editable="bottom">
+                                    <field name="dept_budget_id" invisible="1"/>
+                                    <field name="from_budget_line_id" options="{'no_create': True,'no_open': True}"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="remaining_amount"/>
+                                    <field name="request_amount" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+     <record id="monthly_budget_request_lines_form_view" model="ir.ui.view">
+        <field name="name">monthly.budget.request.lines.form.view</field>
+        <field name="model">monthly.budget.request.lines</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="From Budget">
+                        <field name="dept_budget_id" invisible="1"/>
+                        <field name="from_budget_line_id" options="{'no_create': True,'no_open': True}"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="remaining_amount"/>
+                        <field name="request_amount" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_monthly_budget_request" model="ir.actions.act_window">
+        <field name="name">Monthly Budget Request</field>
+        <field name="res_model">monthly.budget.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to Request a Monthly Budget Request?
+          </p><p>
+              Let's Request a Monthly Budget Request.
+          </p>
+        </field>
+    </record>
+
+      <menuitem
+        parent="custom_budget_management.menu_root"
+        id="menu_monthly_budget_request"
+        action="action_monthly_budget_request"
+        sequence="5"
+        groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+</odoo>

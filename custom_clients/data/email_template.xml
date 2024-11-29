@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <!--Cash request send Notification to Supervisor -->
+        <record id="email_template_contract_expiry_notification" model="mail.template">
+            <field name="name">Contract Expire Notification: Send by email</field>
+            <field name="model_id" ref="custom_clients.model_property_client_management"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="email_from">kuringerealestatecoltd@gmail.com</field>
+            <field name="email_to">
+                ${object.name.email}
+            </field>
+            <field name="subject">
+                Contract Expire Notification
+            </field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <strong>
+                            Dear ${object.name.name} ,
+                        </strong>
+                        <br/>
+                        <br/>
+                        This is to notify you that your contract will expire on
+                        <strong>${object.contract_end_date}</strong>
+                        you have one Month before your contract expiration.
+                        <br/>
+                        <br/>
+
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        Regards,
+                        <br/>
+                        <strong>
+                            Kuringe Team
+                        </strong>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

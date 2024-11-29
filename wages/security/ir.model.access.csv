@@ -1,0 +1,36 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wage_request_staff,Wage Request Staff Group,model_account_wage_request,wage_request_staff,1,1,1,0
+access_wage_request_hod,Wage Request HOD Group,model_account_wage_request,wage_request_hod,1,1,1,1
+access_wage_request_cashier,Wage Request Cashier Group,model_account_wage_request,wage_request_cashier,1,1,1,1
+access_wage_request_hr,Wage Request HR Group,model_account_wage_request,wage_request_hr,1,1,1,1
+access_wage_request_acc,Wage Request ACC Group,model_account_wage_request,wage_request_accountant,1,1,1,1
+access_wage_request_bm,Wage Request BM Group,model_account_wage_request,wage_request_bm,1,1,1,1
+access_wage_request_fm,Wage Request FM Group,model_account_wage_request,wage_request_fm,1,1,1,1
+
+access_wage_request_lines_staff,Wage Request Lines Staff Group,model_account_wage_request_lines,wage_request_staff,1,1,1,0
+access_wage_request_lines_hod,Wage Request Lines HOD Group,model_account_wage_request_lines,wage_request_hod,1,1,1,1
+access_wage_request_lines_cashier,Wage Request Lines Cashier Group,model_account_wage_request_lines,wage_request_cashier,1,1,1,1
+access_wage_request_lines_hr,Wage Request Lines HR Group,model_account_wage_request_lines,wage_request_hr,1,1,1,1
+access_wage_request_lines_acc,Wage Request Lines ACC Group,model_account_wage_request_lines,wage_request_accountant,1,1,1,1
+access_wage_request_lines_bm,Wage Request Lines BM Group,model_account_wage_request_lines,wage_request_bm,1,1,1,1
+access_wage_request_lines_fm,Wage Request Lines FM Group,model_account_wage_request_lines,wage_request_fm,1,1,1,1
+
+access_wage_request_labourers_staff,Wage Request Labourers Staff Group,model_account_wage_request_labourers,wage_request_staff,1,1,1,0
+access_wage_request_labourers_hod,Wage Request Labourers HOD Group,model_account_wage_request_labourers,wage_request_hod,1,1,1,1
+access_wage_request_labourers_cashier,Wage Request Labourers Cashier Group,model_account_wage_request_labourers,wage_request_cashier,1,1,1,1
+access_wage_request_labourers_hr,Wage Request Labourers HR Group,model_account_wage_request_labourers,wage_request_hr,1,1,1,1
+access_wage_request_labourers_acc,Wage Request Labourers ACC Group,model_account_wage_request_labourers,wage_request_accountant,1,1,1,1
+access_wage_request_labourers_bm,Wage Request Labourers BM Group,model_account_wage_request_labourers,wage_request_bm,1,1,1,1
+access_wage_request_labourers_fm,Wage Request Labourers FM Group,model_account_wage_request_labourers,wage_request_fm,1,1,1,1
+
+access_wage_employees_staff,Wage Employees Staff Group,hr.model_hr_employee,wage_request_staff,1,0,0,0
+access_wage_employees_hod,Wage Employees HOD Group,hr.model_hr_employee,wage_request_hod,1,0,0,0
+access_wage_employees_cashier,Wage Employees Cashier Group,hr.model_hr_employee,wage_request_cashier,1,0,0,0
+access_wage_employees_hr,Wage Employees HR Group,hr.model_hr_employee,wage_request_hr,1,1,1,1
+access_wage_employees_acc,Wage Employees ACC Group,hr.model_hr_employee,wage_request_accountant,1,1,1,1
+access_wage_employees_bm,Wage Employees BM Group,hr.model_hr_employee,wage_request_bm,1,1,1,1
+access_wage_employees_fm,Wage Employees FM Group,hr.model_hr_employee,wage_request_fm,1,1,1,1
+
+access_wage_supportive_doc,Wages Supportive Document,wages.model_wages_support_document_line,,1,1,1,1
+
+access_wage_sites_configuration,Wages sites configuration,wages.model_sites_configuration,,1,1,1,1

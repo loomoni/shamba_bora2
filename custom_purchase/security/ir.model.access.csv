@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchases_po,Access Purchases PO,purchase.model_purchase_order,custom_purchase.group_purchase_po,1,1,1,1
+access_purchases_acc,Access Purchases ACC,purchase.model_purchase_order,custom_purchase.group_purchase_accountant,1,1,1,0
+access_purchases_cashier,Access Purchases Cashier,purchase.model_purchase_order,custom_purchase.group_cashier_po,1,1,1,0
+access_purchases_cashier_line,Access Purchases Cashier Line,purchase.model_purchase_order_line,custom_purchase.group_cashier_po,1,1,1,0
+access_purchases_support_documents,Access Purchases Support Document,custom_purchase.model_purchase_support_document_line,,1,1,1,1

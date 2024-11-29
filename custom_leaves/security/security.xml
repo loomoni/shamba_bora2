@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record id="group_leaves_staff" model="res.groups">
+            <field name="name">Staff</field>
+            <field name="category_id" ref="base.module_category_hr_holidays"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_leaves_hod" model="res.groups">
+            <field name="name">HOD</field>
+            <field name="category_id" ref="base.module_category_hr_holidays"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="hr_holidays.group_hr_holidays_user" model="res.groups">
+            <field name="name">HR Manager</field>
+        </record>
+
+        <record id="hr_holidays.group_hr_holidays_manager" model="res.groups">
+            <field name="name">Finance Manager</field>
+        </record>
+
+        <record id="hr_leave_rule_staff" model="ir.rule">
+            <field name="name">Staff HR Leave</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_leaves_staff'))]"/>
+        </record>
+
+        <record id="hr_leave_rule_hod" model="ir.rule">
+            <field name="name">HOD HR Leave</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="domain_force">[('employee_id.department_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_leaves_hod'))]"/>
+        </record>
+
+        <record id="hr_holidays.hr_leave_rule_officer_update" model="ir.rule">
+            <field name="name">HR Manager HR Leave</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+            <field name="domain_force">[('employee_id.department_id.branch_id.hr_manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('hr_holidays.group_hr_holidays_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

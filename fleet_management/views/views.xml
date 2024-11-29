@@ -1,0 +1,208 @@
+<odoo>
+
+    <record id="vehicle_registration_tree_view" model="ir.ui.view">
+      <field name="name">vehicle.registration.tree.view</field>
+      <field name="model">fleet.vehicle.registration</field>
+      <field name="arch" type="xml">
+          <tree string="Vehicle Registration">
+              <field name="name"/>
+              <field name="reg_no"/>
+              <field name="vehicle_model"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="vehicle_registration_search_view" model="ir.ui.view">
+      <field name="name">vehicle.registration.search.view</field>
+      <field name="model">fleet.vehicle.registration</field>
+      <field name="arch" type="xml">
+          <search string="Vehicle Registration Search">
+              <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+              <field name="reg_no" string="Registration No" filter_domain="[('reg_no','ilike',self)]"/>
+              <field name="vehicle_model" string="Model Name" filter_domain="[('vehicle_model','ilike',self)]"/>
+              <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+              <group name="groupby">
+                  <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                  <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                </group>
+          </search>
+      </field>
+    </record>
+
+    <record id="vehicle_reg_kanban_view" model="ir.ui.view">
+      <field name="name">vehicle.reg.kanban.view</field>
+      <field name="model">fleet.vehicle.registration</field>
+      <field name="arch" type="xml">
+          <kanban>
+              <field name="id"/>
+              <field name="image_small"/>
+              <field name="name"/>
+              <field name="reg_no"/>
+              <field name="vehicle_model"/>
+              <field name="date"/>
+              <field name="responsible_driver_id"/>
+              <field name="department_id"/>
+              <field name="state"/>
+              <templates>
+                  <t t-name="kanban-box">
+                      <div class="oe_kanban_global_click">
+                          <div class="o_kanban_image">
+                              <img t-att-src="kanban_image('fleet.vehicle.registration', 'image_small', record.id.raw_value)" alt="Vehicle"/>
+                          </div>
+                          <div class="oe_kanban_details">
+                              <strong class="o_kanban_record_title">
+                                  <field name="name"/>
+                              </strong>
+                              <div name="tags"/>
+                              <ul>
+                                  <li>Reg No: <field name="reg_no" /></li>
+                              </ul>
+                              <div name="tags"/>
+                              <strong>
+                                  <field name="state"/>
+                              </strong>
+                              <div name="tags"/>
+                          </div>
+                      </div>
+                  </t>
+              </templates>
+          </kanban>
+      </field>
+    </record>
+
+   <record id="vehicle_registration_form_view" model="ir.ui.view">
+        <field name="name">vehicle.registration.form.view</field>
+        <field name="model">fleet.vehicle.registration</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_active" states="draft" string="Activate" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_reset" states="not_running,under_maintainance" string="Review" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_disabled" states="active" string="Disable" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_maintain" states="active" string="Under Maintenance" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,under_maintainance,not_running"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="image_small" widget="image" />
+                        </group>
+                        <group>
+                            <field name="name" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="reg_no" />
+                            <field name="department_id" />
+                            <field name="date" />
+                        </group>
+                        <group>
+                            <field name="vehicle_model" />
+                            <field name="responsible_driver_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vehicle Assignments">
+                            <field name="assignment_ids">
+                                <tree create="false" readonly="1">
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="department_id"/>
+                                    <field name="requester_id"/>
+                                    <field name="driver_id"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                      <group>
+                                        <group>
+                                          <field name="name"/>
+                                          <field name="requester_id"/>
+                                          <field name="department_id"/>
+                                        </group>
+                                        <group>
+                                          <field name="date"/>
+                                          <field name="driver_id"/>
+                                          <field name="state"/>
+                                        </group>
+                                      </group>
+                                      <group>
+                                        <field name="purpose"/>
+                                      </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Vehicle GatePass">
+                            <field name="gate_pass_ids">
+                                <tree create="false" readonly="1">
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="department_id"/>
+                                    <field name="driver_id"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                      <group>
+                                        <group>
+                                          <field name="name"/>
+                                          <field name="department_id"/>
+                                          <field name="time_out"/>
+                                          <field name="km_out"/>
+                                        </group>
+                                        <group>
+                                          <field name="date"/>
+                                          <field name="driver_id"/>
+                                          <field name="state"/>
+                                          <field name="km_in"/>
+                                        </group>
+                                      </group>
+                                      <group>
+                                        <field name="purpose"/>
+                                      </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vehicle_registration" model="ir.actions.act_window">
+        <field name="name">Vehicle Registration</field>
+        <field name="res_model">fleet.vehicle.registration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a vehicle registration?
+          </p><p>
+              Let's create a vehicle registration.
+          </p>
+        </field>
+    </record>
+
+   <menuitem name="Fleet Management" id="fleet_management.menu_root"
+             groups="fleet_management.fleet_staff,fleet_management.fleet_hod,fleet_management.fleet_security,fleet_management.fleet_admin"/>
+
+   <menuitem
+        parent="fleet_management.menu_root"
+        name="Vehicle Registration"
+        id="menu_vehicle_registration"
+        action="action_vehicle_registration"
+        sequence="3"
+        groups="fleet_management.fleet_hod,fleet_management.fleet_admin"/>
+</odoo>

@@ -1,0 +1,80 @@
+<odoo>
+
+    <record id="asset_assign_tree_view" model="ir.ui.view">
+      <field name="name">asset.assign.tree.view</field>
+      <field name="model">account.asset.assign</field>
+      <field name="arch" type="xml">
+          <tree string="Asset Assignment">
+               <field name="date_created"/>
+              <field name="assignment_no"/>
+              <field name="assigned_by"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+  <record id="asset_assign_search_view" model="ir.ui.view">
+    <field name="name">asset.assign.search.view</field>
+     <field name="model">account.asset.assign</field>
+    <field name="arch" type="xml">
+        <search string="asset assign search">
+            <field name="assignment_no" string="assignment_no" filter_domain="[('assignment_no','ilike',self)]"/>
+            <field name="assigned_person" string="assigned_person" filter_domain="[('assigned_person','ilike',self)]"/>
+        </search>
+    </field>
+  </record>
+
+   <record id="asset_assign_form_view" model="ir.ui.view">
+        <field name="name">asset.assign.form.view</field>
+        <field name="model">account.asset.assign</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_assign" states="draft" string="Assign" type="object" class="oe_highlight"
+                            groups="asset_management.asset_hod,asset_management.asset_fm,asset_management.asset_md"/>
+                    <button name="button_unassign" states="assigned" string="Unassign" type="object"
+                            groups="asset_management.asset_hod,asset_management.asset_fm,asset_management.asset_md"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,assigned,unassigned"/>
+                </header>
+                <sheet>
+                    <group string="Assigned To">
+                        <field name="assigned_person"/>
+                    </group>
+                    <notebook>
+                        <page string="Assets To Assign">
+                            <field name="asset_ids" attrs="{'readonly': [('state', 'in', ('approved','unassigned'))]}" domain="[('assigned','=', False)]">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="category_id" />
+                                    <field name="value" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_assign" model="ir.actions.act_window">
+        <field name="name">Asset Assignment</field>
+        <field name="res_model">account.asset.assign</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a asset assignment?
+          </p><p>
+              Let's create a asset assignment.
+          </p>
+        </field>
+    </record>
+
+      <menuitem
+        parent="asset_management.menu_root"
+        id="menu_asset_assign"
+        action="action_asset_assign"
+        sequence="4"
+        groups="asset_management.asset_hod,asset_management.asset_fm,asset_management.asset_md"/>
+</odoo>

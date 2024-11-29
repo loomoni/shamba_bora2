@@ -1,0 +1,82 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_registration_form,Register Membership,model_form_registration,administrator_access_group_id,1,1,1,1
+access_registration_form,Register Membership,model_form_registration,manager_access_group_id,1,1,1,1
+access_registration_form,Register Membership,model_form_registration,operator_access_group_id,1,1,1,1
+
+access_payment,Membership payment,model_payment,administrator_access_group_id,1,1,1,1
+access_payment,Membership payment,model_payment,manager_access_group_id,1,1,1,1
+access_payment,Membership payment,model_payment,operator_access_group_id,1,1,1,1
+
+access_directors_line,Add Directors,model_directors_lines,administrator_access_group_id,1,1,1,1
+access_directors_line,Add Directors,model_directors_lines,manager_access_group_id,1,1,1,1
+access_directors_line,Add Directors,model_directors_lines,operator_access_group_id,1,1,1,1
+
+access_business_description_line,Add description,model_business_description,administrator_access_group_id,1,1,1,1
+access_business_description_line,Add description,model_business_description,manager_access_group_id,1,1,1,1
+access_business_description_line,Add description,model_business_description,operator_access_group_id,1,1,1,1
+
+access_industry_type,Industry Type,model_configuration_setting_industry,administrator_access_group_id,1,1,1,1
+access_industry_type,Industry Type,model_configuration_setting_industry,manager_access_group_id,1,1,1,1
+access_industry_type,Industry Type,model_configuration_setting_industry,operator_access_group_id,1,1,1,1
+
+access_cluster,Add Cluster,model_configuration_setting_cluster,administrator_access_group_id,1,1,1,1
+access_cluster,Add Cluster,model_configuration_setting_cluster,manager_access_group_id,1,1,1,1
+access_cluster,Add Cluster,model_configuration_setting_cluster,operator_access_group_id,1,1,1,1
+
+access_category,Add Category,model_configuration_setting_category,administrator_access_group_id,1,1,1,1
+access_category,Add Category,model_configuration_setting_category,manager_access_group_id,1,1,1,1
+access_category,Add Category,model_configuration_setting_category,operator_access_group_id,1,1,1,1
+
+access_general_contact,Add General Contact and Adress,model_general_contact,administrator_access_group_id,1,1,1,1
+access_general_contact,Add General Contact and Adress,model_general_contact,manager_access_group_id,1,1,1,1
+access_general_contact,Add General Contact and Adress,model_general_contact,operator_access_group_id,1,1,1,1
+
+access_contact_title,Add contact Title,model_contact_title,administrator_access_group_id,1,1,1,1
+access_contact_title,Add contact Title,model_contact_title,manager_access_group_id,1,1,1,1
+access_contact_title,Add contact Title,model_contact_title,operator_access_group_id,1,1,1,1
+
+access_payment_lines,Add Payment,model_payment_lines,administrator_access_group_id,1,1,1,1
+access_payment_lines,Add Payment,model_payment_lines,manager_access_group_id,1,1,1,1
+access_payment_lines,Add Payment,model_payment_lines,operator_access_group_id,1,1,1,1
+
+access_engagement,Add engagement,model_engagement,administrator_access_group_id,1,1,1,1
+access_engagement,Add engagement,model_engagement,manager_access_group_id,1,1,1,1
+access_engagement,Add engagement,model_engagement,operator_access_group_id,1,1,1,1
+
+access_engagement_type,engagement type,model_engagement_type,administrator_access_group_id,1,1,1,1
+access_engagement_type,engagement type,model_engagement_type,manager_access_group_id,1,1,1,1
+access_engagement_type,engagement type,model_engagement_type,operator_access_group_id,1,1,1,1
+
+access_issue,Add issues,model_issue,administrator_access_group_id,1,1,1,1
+access_issue,Add issues,model_issue,manager_access_group_id,1,1,1,1
+access_issue,Add issues,model_issue,operator_access_group_id,1,1,1,1
+
+access_issue_type,Add issue type,model_issue_type,administrator_access_group_id,1,1,1,1
+access_issue_type,Add issue type,model_issue_type,manager_access_group_id,1,1,1,1
+access_issue_type,Add issue type,model_issue_type,operator_access_group_id,1,1,1,1
+
+access_event_theme,Add event theme,model_event_theme,administrator_access_group_id,1,1,1,1
+access_event_theme,Add event theme,model_event_theme,manager_access_group_id,1,1,1,1
+access_event_theme,Add event theme,model_event_theme,operator_access_group_id,1,1,1,1
+
+access_event,Add event,model_event,administrator_access_group_id,1,1,1,1
+access_event,Add event,model_event,manager_access_group_id,1,1,1,1
+access_event,Add event,model_event,operator_access_group_id,1,1,1,1
+
+access_status,Add status,model_status,administrator_access_group_id,1,1,1,1
+access_status,Add status,model_status,manager_access_group_id,1,1,1,1
+access_status,Add status,model_status,operator_access_group_id,1,1,1,1
+
+access_region,Add region,model_region,administrator_access_group_id,1,1,1,1
+access_region,Add region,model_region,manager_access_group_id,1,1,1,1
+access_region,Add region,model_region,operator_access_group_id,1,1,1,1
+
+access_district_lines,Add district lines,model_district_lines,administrator_access_group_id,1,1,1,1
+access_district_lines,Add district lines,model_district_lines,manager_access_group_id,1,1,1,1
+access_district_lines,Add district lines,model_district_lines,operator_access_group_id,1,1,1,1
+
+access_chair_person_title,Add Chair person title,model_chair_person_title,,1,1,1,1
+
+access_ceo_title,Add ceo title,model_ceo_title,,1,1,1,1
+

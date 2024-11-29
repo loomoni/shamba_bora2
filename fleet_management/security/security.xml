@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="fleet_security_category" model="ir.module.category">
+            <field name="name">Fleet</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="fleet_staff" model="res.groups">
+            <field name="name">Staff</field>
+            <field name="category_id" ref="fleet_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="fleet_hod" model="res.groups">
+            <field name="name">HOD</field>
+            <field name="category_id" ref="fleet_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="fleet_security" model="res.groups">
+            <field name="name">Security</field>
+            <field name="category_id" ref="fleet_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="fleet_admin" model="res.groups">
+            <field name="name">Admin</field>
+            <field name="category_id" ref="fleet_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>
+

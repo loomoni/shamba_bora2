@@ -1,0 +1,129 @@
+<odoo>
+
+    <record id="budget_supplimentary_tree_view" model="ir.ui.view">
+      <field name="name">budget.supplimentary.view</field>
+      <field name="model">budget.supplimentary</field>
+      <field name="arch" type="xml">
+          <tree string="Budget Supplimentary">
+              <field name="date"/>
+              <field name="name"/>
+              <field name="annual_budget_id"/>
+              <field name="amount_total"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="budget_supplimentary_search_view" model="ir.ui.view">
+        <field name="name">budget.supplimentary.search.view</field>
+        <field name="model">budget.supplimentary</field>
+        <field name="arch" type="xml">
+            <search string="budget supplimentary search">
+                <field name="name" string="Budget Supplimentary" filter_domain="[('name','ilike',self)]"/>
+                <field name="annual_budget_id" string="Annual Budget" filter_domain="[('annual_budget_id','ilike',self)]"/>
+                <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+   <record id="budget_supplimentary_form_view" model="ir.ui.view">
+        <field name="name">budget.supplimentary.form.view</field>
+        <field name="model">budget.supplimentary</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                    <button name="action_confirm" states="draft" string="Confirm" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm"/>
+                     <button name="action_reset" states="reject" string="Move Back To Draft" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+                     <button name="action_approve" states="confirmed" string="Approve" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_md"/>
+                    <button name="action_reject" states="confirmed,dfa_approved,bc_approved" string="Cancel" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,dfa_approved,bc_approved,approved,reject"/>
+                </header>
+                <sheet>
+                    <group string="Budget Supplimentary">
+                        <field name="id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="date"/>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="branch_id"/>
+                        </group>
+                    </group>
+
+                    <group string="Annual Budget">
+                        <field name="annual_budget_id" options="{'no_create':True,'no_open':True}"/>
+                    </group>
+
+                    <group string="Total Amount To Suppliment">
+                        <field name="amount_total" />
+                    </group>
+
+                    <notebook groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md" attrs="{'invisible': [('annual_budget_id', '=', False)]}">
+                        <page string="Existing Budget Lines Supplimentary" groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md" >
+                            <field name="old_line_ids" context="{'default_supplimentary_id': id, 'default_annual_budget_id': annual_budget_id}">
+                                <tree editable="bottom">
+                                    <field name="annual_budget_id" invisible="1"/>
+                                    <field name="dept_budget_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="budget_line_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="supplimentary_amount" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="New Budget Lines Supplimentary" groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md" >
+                            <field name="new_line_ids" context="{'default_supplimentary_id': id, 'default_annual_budget_id': annual_budget_id, 'special_display_name': True}">
+                                <tree editable="bottom">
+                                    <field name="annual_budget_id" invisible="1"/>
+                                    <field name="dept_budget_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="department_id" invisible="1"/>
+                                    <field name="budget_group_id" options="{'no_create':True,'no_open':True}" domain="[('department_id','=',department_id)]"/>
+                                    <field name="budget_code"/>
+                                    <field name="account_id" options="{'no_create':True,'no_open':True}"/>
+                                    <field name="general_budget_id" invisible="1"/>
+                                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" invisible="1"/>
+                                    <field name="budget_line_desc"/>
+                                    <field name="date_from" invisible="1"/>
+                                    <field name="date_to" invisible="1"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="supplimentary_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_budget_supplimentary" model="ir.actions.act_window">
+        <field name="name">Budget Supplimentary</field>
+        <field name="res_model">budget.supplimentary</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to request a budget supplimentary?
+          </p><p>
+              Let's request a budget supplimentary.
+          </p>
+        </field>
+    </record>
+
+      <menuitem
+        parent="custom_budget_management.menu_root"
+        id="menu_budget_supplimentary"
+        action="action_budget_supplimentary"
+        sequence="7"
+        groups="custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+</odoo>

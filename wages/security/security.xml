@@ -1,0 +1,101 @@
+<odoo>
+    <data>
+        <record id="wage_request_security_category" model="ir.module.category">
+            <field name="name">Wage Request</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+        <record id="wage_request_staff" model="res.groups">
+            <field name="name">Staff</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="wage_request_hod" model="res.groups">
+            <field name="name">HOD</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="wage_request_cashier" model="res.groups">
+            <field name="name">Cashier</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="wage_request_hr" model="res.groups">
+            <field name="name">HR</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="wage_request_accountant" model="res.groups">
+            <field name="name">Accountant</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="wage_request_bm" model="res.groups">
+            <field name="name">Branch Manager</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="wage_request_fm" model="res.groups">
+            <field name="name">Finance Manager</field>
+            <field name="category_id" ref="wage_request_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_staff">
+            <field name="name">Wage Request Access Staff</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('requester_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_staff'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_hod">
+            <field name="name">Wage Request Access HOD</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('department_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_hod'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_cashier">
+            <field name="name">Wage Request Access Cashier</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('department_id.branch_id.cashier_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_cashier'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_hr">
+            <field name="name">Wage Request Access HR</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('department_id.branch_id.hr_manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_hr'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_accountant">
+            <field name="name">Wage Request Access Acc</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('department_id.branch_id.accountant_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_accountant'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_bm">
+            <field name="name">Wage Request Access BM</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[('department_id.branch_id.manager_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_bm'))]"/>
+        </record>
+
+        <record model="ir.rule" id="wage_request_access_fm">
+            <field name="name">Wage Request Access FM</field>
+            <field name="model_id" ref="model_account_wage_request"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('wage_request_fm'))]"/>
+        </record>
+    </data>
+</odoo>

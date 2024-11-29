@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_reg_staff,Fleet Vehicle Reg Staff Group,model_fleet_vehicle_registration,fleet_staff,1,1,1,0
+access_fleet_vehicle_reg_hod,Fleet Vehicle Reg HOD Group,model_fleet_vehicle_registration,fleet_hod,1,1,1,1
+access_fleet_vehicle_reg_security,Fleet Vehicle Reg Security Group,model_fleet_vehicle_registration,fleet_security,1,0,0,0
+access_fleet_vehicle_reg_admin,Fleet Vehicle Reg Admin Group,model_fleet_vehicle_registration,fleet_admin,1,1,1,1
+
+access_fleet_vehicle_assign_staff,Fleet Vehicle Assign Staff Group,model_fleet_vehicle_assignments,fleet_staff,1,1,1,0
+access_fleet_vehicle_assign_hod,Fleet Vehicle Assign HOD Group,model_fleet_vehicle_assignments,fleet_hod,1,1,1,1
+access_fleet_vehicle_assign_security,Fleet Vehicle Assign Security Group,model_fleet_vehicle_assignments,fleet_security,1,0,0,0
+access_fleet_vehicle_assign_admin,Fleet Vehicle Assign Admin Group,model_fleet_vehicle_assignments,fleet_admin,1,1,1,1
+
+access_fleet_vehicle_gatepass_staff,Fleet Vehicle GatePass Staff Group,model_fleet_vehicle_gatepass,fleet_staff,1,1,1,0
+access_fleet_vehicle_gatepass_hod,Fleet Vehicle GatePass HOD Group,model_fleet_vehicle_gatepass,fleet_hod,1,1,1,1
+access_fleet_vehicle_gatepass_security,Fleet Vehicle GatePass Security Group,model_fleet_vehicle_gatepass,fleet_security,1,1,0,0
+access_fleet_vehicle_gatepass_admin,Fleet Vehicle GatePass Admin Group,model_fleet_vehicle_gatepass,fleet_admin,1,1,1,1

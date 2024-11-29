@@ -1,0 +1,53 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_contract_payroll_acc,Payroll Contract View ACCOUNTANT,hr_contract.model_hr_contract,group_hr_payroll_acc,1,0,0,0
+access_hr_contract_payroll_bm,Payroll Contract View BM,hr_contract.model_hr_contract,group_hr_payroll_bm,1,0,0,0
+
+access_hr_payslip_acc,HR Payslip ACC,hr_payroll.model_hr_payslip,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_bm,HR Payslip BM,hr_payroll.model_hr_payslip,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_line_acc,HR Payslip Line ACC,hr_payroll.model_hr_payslip_line,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_line_bm,HR Payslip Line BM,hr_payroll.model_hr_payslip_line,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_input_user_acc,HR Payslip Input ACC,hr_payroll.model_hr_payslip_input,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_input_user_bm,HR Payslip Input BM,hr_payroll.model_hr_payslip_input,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_worked_days_acc,HR Payslip Worked Days ACC,hr_payroll.model_hr_payslip_worked_days,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_worked_days_bm,HR Payslip Worked Days BM,hr_payroll.model_hr_payslip_worked_days,group_hr_payroll_bm,1,1,1,1
+
+access_hr_employee_payroll_acc,Payroll Employees ACC,hr.model_hr_employee,group_hr_payroll_acc,1,0,1,0
+access_hr_employee_payroll_bm,Payroll Employees BM,hr.model_hr_employee,group_hr_payroll_bm,1,0,1,0
+
+access_hr_payroll_structure_acc,HR Payroll Structure ACC,hr_payroll.model_hr_payroll_structure,group_hr_payroll_acc,1,1,1,1
+access_hr_payroll_structure_bm,HR Payroll Structure BM,hr_payroll.model_hr_payroll_structure,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_employee_acc,HR Payslip Employee ACC,hr_payroll_account.model_hr_payslip_employees,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_employee_bm,HR Payslip Employee BM,hr_payroll_account.model_hr_payslip_employees,group_hr_payroll_bm,1,1,1,1
+
+access_hr_contribution_register_acc,HR Contribution Register ACC,hr_payroll.model_hr_contribution_register,group_hr_payroll_acc,1,1,1,1
+access_hr_contribution_register_bm,HR Contribution Register BM,hr_payroll.model_hr_contribution_register,group_hr_payroll_bm,1,1,1,1
+
+access_hr_salary_rule_category_acc,HR Salary Rule Category ACC,hr_payroll.model_hr_salary_rule_category,group_hr_payroll_acc,1,1,1,1
+access_hr_salary_rule_category_bm,HR Salary Rule Category BM,hr_payroll.model_hr_salary_rule_category,group_hr_payroll_bm,1,1,1,1
+
+access_hr_rule_input_officer_acc,HR Rule Input Office ACC,hr_payroll.model_hr_rule_input,group_hr_payroll_acc,1,1,1,1
+access_hr_rule_input_officer_bm,HR Rule Input Office BM,hr_payroll.model_hr_rule_input,group_hr_payroll_bm,1,1,1,1
+
+access_hr_salary_rule_user_acc,HR Salary Rule User ACC,hr_payroll.model_hr_salary_rule,group_hr_payroll_acc,1,1,1,1
+access_hr_salary_rule_user_bm,HR Salary Rule User BM,hr_payroll.model_hr_salary_rule,group_hr_payroll_bm,1,1,1,1
+
+access_hr_contract_advantage_template_acc,HR Contract Advantage Template User ACC,hr_payroll.model_hr_contract_advantage_template,group_hr_payroll_acc,1,1,1,1
+access_hr_contract_advantage_template_bm,HR Contract Advantage Template User BM,hr_payroll.model_hr_contract_advantage_template,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_run_acc,HR Payroll Batches ACC,hr_payroll.model_hr_payslip_run,group_hr_payroll_acc,1,1,1,1
+access_hr_payslip_run_bm,HR Payroll Batches BM,hr_payroll.model_hr_payslip_run,group_hr_payroll_bm,1,1,1,1
+
+access_hr_payslip_run_hr,HR Payroll Batches HR,hr_payroll.model_hr_payslip_run,hr_payroll.group_hr_payroll_user,1,1,1,1
+
+access_payroll_summary_acc,Payroll Summary ACC,model_payroll_summary,group_hr_payroll_acc,1,1,1,1
+access_payroll_summary_bm,Payroll Summary BM,model_payroll_summary,group_hr_payroll_bm,1,1,1,1
+
+access_payroll_summary_wizard_acc,Payroll Summary Wizard ACC,model_payroll_summary_wizard,group_hr_payroll_acc,1,1,1,1
+access_payroll_summary_wizard_bm,Payroll Summary Wizard BM,model_payroll_summary_wizard,group_hr_payroll_bm,1,1,1,1
+
+access_payroll_summary_excel_acc,Payroll Summary Excel ACC,model_payroll_summary_excel,group_hr_payroll_acc,1,1,1,1
+access_payroll_summary_excel_bm,Payroll Summary Excel BM,model_payroll_summary_excel,group_hr_payroll_bm,1,1,1,1

@@ -1,0 +1,89 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_budget_groups_hod,Budget Group HOD Group,model_budget_groups,budget_hod,1,0,0,0
+access_budget_groups_bm,Budget Group BM Group,model_budget_groups,budget_bm,1,0,0,0
+access_budget_groups_fm,Budget Group FM Group,model_budget_groups,budget_fm,1,1,1,1
+access_budget_groups_md,Budget Group MD Group,model_budget_groups,budget_md,1,1,1,1
+
+access_budget_hod,Budget HOD Group,model_crossovered_budget,budget_hod,1,1,1,1
+access_budget_bm,Budget BM Group,model_crossovered_budget,budget_bm,1,1,1,1
+access_budget_fm,Budget FM Group,model_crossovered_budget,budget_fm,1,1,1,1
+access_budget_md,Budget MD Group,model_crossovered_budget,budget_md,1,1,1,1
+
+access_account_budget_post_hod,Budget Post HOD Group,om_account_budget.model_account_budget_post,budget_hod,1,1,1,1
+access_account_budget_post_bm,Budget Post BM Group,om_account_budget.model_account_budget_post,budget_bm,1,1,1,1
+access_account_budget_post_fm,Budget Post FM Group,om_account_budget.model_account_budget_post,budget_fm,1,1,1,1
+access_account_budget_post_md,Budget Post MD Group,om_account_budget.model_account_budget_post,budget_md,1,1,1,1
+
+access_analytical_account_hod,Analytical HOD Group,model_account_analytic_account,budget_hod,1,1,1,1
+access_analytical_account_bm,Analytical BM Group,model_account_analytic_account,budget_bm,1,1,1,1
+access_analytical_account_fm,Analytical FM Group,model_account_analytic_account,budget_fm,1,1,1,1
+access_analytical_account_md,Analytical MD Group,model_account_analytic_account,budget_md,1,1,1,1
+
+access_annual_budget_hod,Annual Budget HOD Group,model_annual_budget,budget_hod,1,0,0,0
+access_annual_budget_bm,Annual Budget BM Group,model_annual_budget,budget_bm,1,1,0,0
+access_annual_budget_fm,Annual Budget FM Group,model_annual_budget,budget_fm,1,1,1,1
+access_annual_budget_md,Annual Budget MD Group,model_annual_budget,budget_md,1,1,1,1
+
+access_budget_reallocation_hod,Budget Reallocation HOD Group,model_budget_reallocation,budget_hod,1,1,0,0
+access_budget_reallocation_bm,Budget Reallocation BM Group,model_budget_reallocation,budget_bm,1,1,0,0
+access_budget_reallocation_fm,Budget Reallocation FM Group,model_budget_reallocation,budget_fm,1,1,1,1
+access_budget_reallocation_md,Budget Reallocation MD Group,model_budget_reallocation,budget_md,1,1,1,1
+
+access_budget_reallocation_lines_hod,Budget Reallocation Lines HOD Group,model_budget_reallocation_lines,budget_hod,1,1,1,0
+access_budget_reallocation_lines_bm,Budget Reallocation Lines BM Group,model_budget_reallocation_lines,budget_bm,1,1,1,0
+access_budget_reallocation_lines_fm,Budget Reallocation Lines FM Group,model_budget_reallocation_lines,budget_fm,1,1,1,1
+access_budget_reallocation_lines_md,Budget Reallocation Lines MD Group,model_budget_reallocation_lines,budget_md,1,1,1,1
+
+access_budget_versions_hod,Budget Versions HOD Group,model_budget_versions,budget_hod,1,1,1,0
+access_budget_versions_bm,Budget Versions BM Group,model_budget_versions,budget_bm,1,1,1,0
+access_budget_versions_fm,Budget Versions FM Group,model_budget_versions,budget_fm,1,1,1,1
+access_budget_versions_md,Budget Versions MD Group,model_budget_versions,budget_md,1,1,1,1
+
+access_crossovered_budget_version_hod,Crossovered Budget Versions HOD Group,model_crossovered_budget_version,budget_hod,1,1,1,0
+access_crossovered_budget_version_bm,Crossovered Budget Versions BM Group,model_crossovered_budget_version,budget_bm,1,1,1,0
+access_crossovered_budget_version_fm,Crossovered Budget Versions FM Group,model_crossovered_budget_version,budget_fm,1,1,1,1
+access_crossovered_budget_version_md,Crossovered Budget Versions MD Group,model_crossovered_budget_version,budget_md,1,1,1,1
+
+access_crossovered_budget_lines_hod,Crossovered Budget Lines HOD Group,om_account_budget.model_crossovered_budget_lines,budget_hod,1,1,1,1
+access_crossovered_budget_lines_bm,Crossovered Budget Lines BM Group,om_account_budget.model_crossovered_budget_lines,budget_bm,1,1,1,1
+access_crossovered_budget_lines_fm,Crossovered Budget Lines FM Group,om_account_budget.model_crossovered_budget_lines,budget_fm,1,1,1,1
+access_crossovered_budget_lines_md,Crossovered Budget Lines MD Group,om_account_budget.model_crossovered_budget_lines,budget_md,1,1,1,1
+
+access_crossovered_budget_version_lines_hod,Crossovered Budget Versions Lines HOD Group,model_crossovered_budget_version_lines,budget_hod,1,1,1,0
+access_crossovered_budget_version_lines_bm,Crossovered Budget Versions Lines BM Group,model_crossovered_budget_version_lines,budget_bm,1,1,1,0
+access_crossovered_budget_version_lines_fm,Crossovered Budget Versions Lines FM Group,model_crossovered_budget_version_lines,budget_fm,1,1,1,1
+access_crossovered_budget_version_lines_md,Crossovered Budget Versions Lines MD Group,model_crossovered_budget_version_lines,budget_md,1,1,1,1
+
+access_budget_supplimentary_hod,Budget Supplimentary HOD Group,model_budget_supplimentary,budget_hod,1,1,1,0
+access_budget_supplimentary_bm,Budget Supplimentary BM Group,model_budget_supplimentary,budget_bm,1,1,1,0
+access_budget_supplimentary_fm,Budget Supplimentary FM Group,model_budget_supplimentary,budget_fm,1,1,1,1
+access_budget_supplimentary_md,Budget Supplimentary MD Group,model_budget_supplimentary,budget_md,1,1,1,1
+
+access_existing_budget_lines_supplimentary_hod,Budget Supplimentary Existing HOD Group,model_existing_budget_lines_supplimentary,budget_hod,1,1,1,0
+access_existing_budget_lines_supplimentary_bm,Budget Supplimentary Existing BM Group,model_existing_budget_lines_supplimentary,budget_bm,1,1,1,0
+access_existing_budget_lines_supplimentary_fm,Budget Supplimentary Existing FM Group,model_existing_budget_lines_supplimentary,budget_fm,1,1,1,1
+access_existing_budget_lines_supplimentary_md,Budget Supplimentary Existing MD Group,model_existing_budget_lines_supplimentary,budget_md,1,1,1,1
+
+access_new_budget_lines_supplimentary_hod,Budget Supplimentary New HOD Group,model_new_budget_lines_supplimentary,budget_hod,1,1,1,0
+access_new_budget_lines_supplimentary_bm,Budget Supplimentary New BM Group,model_new_budget_lines_supplimentary,budget_bm,1,1,1,0
+access_new_budget_lines_supplimentary_fm,Budget Supplimentary New FM Group,model_new_budget_lines_supplimentary,budget_fm,1,1,1,1
+access_new_budget_lines_supplimentary_md,Budget Supplimentary New MD Group,model_new_budget_lines_supplimentary,budget_md,1,1,1,1
+
+access_budget_hr_branches_fm,Budget Branches FM,custom_company.model_hr_branches,budget_fm,1,0,0,0
+access_budget_hr_branches_md,Budget Branches MD,custom_company.model_hr_branches,budget_md,1,0,0,0
+
+
+access_consolidated_budget_monthly_hod,Budget Monthly Consolidated HOD Group,model_monthly_budget_consolidated,budget_hod,1,1,1,0
+access_consolidated_budget_monthly_bm,Budget Monthly Consolidated BM Group,model_monthly_budget_consolidated,budget_bm,1,1,1,1
+access_consolidated_budget_monthly_fm,Budget Monthly Consolidated FM Group,model_monthly_budget_consolidated,budget_fm,1,1,1,1
+access_consolidated_budget_monthly_md,Budget Monthly Consolidated MD Group,model_monthly_budget_consolidated,budget_md,1,1,1,1
+
+access_account_budget_monthly_hod,Budget Monthly HOD Group,model_monthly_budget_request,budget_hod,1,1,1,0
+access_account_budget_monthly_bm,Budget Monthly BM Group,model_monthly_budget_request,budget_bm,1,1,1,1
+access_account_budget_monthly_fm,Budget Monthly FM Group,model_monthly_budget_request,budget_fm,1,1,1,1
+access_account_budget_monthly_md,Budget Monthly MD Group,model_monthly_budget_request,budget_md,1,1,1,1
+
+access_account_budget_monthly_lines_hod,Budget Monthly Lines HOD Group,model_monthly_budget_request_lines,budget_hod,1,1,1,1
+access_account_budget_monthly_lines_bm,Budget Monthly Lines BM Group,model_monthly_budget_request_lines,budget_bm,1,1,1,1
+access_account_budget_monthly_lines_fm,Budget Monthly Lines FM Group,model_monthly_budget_request_lines,budget_fm,1,1,1,1
+access_account_budget_monthly_lines_md,Budget Monthly Lines MD Group,model_monthly_budget_request_lines,budget_md,1,1,1,1

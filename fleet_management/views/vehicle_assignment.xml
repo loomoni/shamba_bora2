@@ -1,0 +1,100 @@
+<odoo>
+
+    <record id="vehicle_assignments_tree_view" model="ir.ui.view">
+      <field name="name">vehicle.assignments.tree.view</field>
+      <field name="model">fleet.vehicle.assignments</field>
+      <field name="arch" type="xml">
+          <tree string="Vehicle Assignments">
+              <field name="name"/>
+              <field name="date"/>
+              <field name="vehicle_id"/>
+              <field name="department_id"/>
+              <field name="requester_id"/>
+              <field name="driver_id"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="vehicle_assignments_search_view" model="ir.ui.view">
+      <field name="name">vehicle.assignments.search.view</field>
+      <field name="model">fleet.vehicle.assignments</field>
+      <field name="arch" type="xml">
+          <search string="Vehicle Assignments Search">
+              <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+              <field name="vehicle_id" string="Vehicle" filter_domain="[('vehicle_id','ilike',self)]"/>
+              <field name="requester_id" string="Requester" filter_domain="[('requester_id','ilike',self)]"/>
+              <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+              <group name="groupby">
+                  <filter name="vehicle_id_groupby" string="Vehicle" context="{'group_by': 'vehicle_id'}"/>
+                  <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                  <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                  <filter name="requester_id_groupby" string="Requestor" context="{'group_by': 'requester_id'}"/>
+                </group>
+          </search>
+      </field>
+    </record>
+
+   <record id="vehicle_assignments_form_view" model="ir.ui.view">
+        <field name="name">vehicle.assignments.form.view</field>
+        <field name="model">fleet.vehicle.assignments</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_recommend" states="draft" string="Recommend" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_hod"/>
+                    <button name="button_reset" states="rejected" string="Review" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_approve" states="recommended" string="Approve" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_reject" states="draft,recommended" string="Reject" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_hod,fleet_management.fleet_admin"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,recommended,approved,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="vehicle_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="requester_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="department_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="driver_id" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="purpose"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+   </record>
+
+   <record id="action_vehicle_assignments" model="ir.actions.act_window">
+        <field name="name">Vehicle Assignments</field>
+        <field name="res_model">fleet.vehicle.assignments</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a vehicle assignments?
+          </p><p>
+              Let's create a vehicle assignments.
+          </p>
+        </field>
+   </record>
+
+   <menuitem
+        parent="fleet_management.menu_root"
+        name="Vehicle Assignments"
+        id="menu_vehicle_assignments"
+        action="action_vehicle_assignments"
+        sequence="4"
+        groups="fleet_management.fleet_staff,fleet_management.fleet_hod,fleet_management.fleet_admin"/>
+</odoo>

@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="asset_security_category" model="ir.module.category">
+            <field name="name">Assets</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="asset_hod" model="res.groups">
+            <field name="name">HOD</field>
+            <field name="category_id" ref="asset_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="asset_fm" model="res.groups">
+            <field name="name">Finance Manager</field>
+            <field name="category_id" ref="asset_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="asset_md" model="res.groups">
+            <field name="name">Managing Director</field>
+            <field name="category_id" ref="asset_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>
+

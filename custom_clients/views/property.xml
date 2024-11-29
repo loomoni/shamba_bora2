@@ -1,0 +1,178 @@
+<odoo>
+    <data>
+        <record id="action_property_management" model="ir.actions.act_window">
+            <field name="name">Properties</field>
+            <field name="res_model">property.management</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Property Created Yet?
+                </p>
+            </field>
+        </record>
+
+        <record id="property_list_tree_view" model="ir.ui.view">
+            <field name="name">property.list.tree.view</field>
+            <field name="model">property.management</field>
+            <field name="arch" type="xml">
+                <tree string="Property">
+                    <field name="name"/>
+                    <field name="property_no"/>
+                    <field name="plot_no"/>
+                    <field name="block_no"/>
+                    <field name="region"/>
+                    <field name="district"/>
+                    <field name="street"/>
+                    <field name="ownership_type"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="property_list_kanban_view" model="ir.ui.view">
+            <field name="name">property.list.kanban.view</field>
+            <field name="model">property.management</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="image_small"/>
+                    <field name="name"/>
+                    <field name="property_no"/>
+                    <field name="plot_no"/>
+                    <field name="block_no"/>
+                    <field name="street"/>
+                    <field name="district"/>
+                    <field name="region"/>
+                    <field name="ownership_type"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('property.management', 'image_small', record.id.raw_value)"
+                                         alt="Property"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div name="tags"/>
+                                    <ul>
+                                        <li>Property No:
+                                            <field name="property_no"/>
+                                        </li>
+                                    </ul>
+                                    <div name="tags"/>
+                                    <strong>
+                                        <field name="state"/>
+                                    </strong>
+                                    <div name="tags"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="property_list_search" model="ir.ui.view">
+            <field name="name">property.list.search</field>
+            <field name="model">property.management</field>
+            <field name="arch" type="xml">
+                <search string="propertys">
+                    <field name="name" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="property_no" filter_domain="[('property_no', 'ilike', self)]"/>
+                    <field name="plot_no" filter_domain="[('plot_no', 'ilike', self)]"/>
+                    <field name="block_no" filter_domain="[('block_no', 'ilike', self)]"/>
+                    <group name="groupby">
+                        <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="property_list_form_view" model="ir.ui.view">
+            <field name="name">property.list.form.view</field>
+            <field name="model">property.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="button_active" type="object" string="Make Available" states="draft"
+                                class="oe_highlight" groups="custom_clients.client_cc,custom_clients.client_acc"/>
+                        <button name="button_maintain" type="object" string="Under Maintenance" states="draft,active"
+                                class="oe_highlight" groups="custom_clients.client_cc,custom_clients.client_acc"/>
+                        <button name="button_inactive" type="object" string="Close" states="maintenance,active"
+                                class="oe_highlight" groups="custom_clients.client_cc,custom_clients.client_acc"/>
+                        <button name="button_reset" type="object" string="Reset" states="active,maintenance,inactive"
+                                class="oe_highlight" groups="custom_clients.client_cc,custom_clients.client_acc"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,maintenance,inactive"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="image_small" widget="image"/>
+                            </group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="property_no"/>
+                                <field name="block_no"/>
+                                <field name="region"/>
+
+                                <field name="ownership_type"/>
+                            </group>
+                            <group>
+                                <field name="plot_no"/>
+                                <field name="district"/>
+                                <field name="street"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="property_document"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Units">
+                                <field name="unit_ids">
+                                    <tree editable="bottom">
+                                        <field name="unit_no"/>
+                                        <field name="unit_size"/>
+                                        <field name="usage_type"/>
+                                        <field name="monthly_rate"/>
+                                        <field name="tax_ids" widget="many2many_tags"/>
+                                        <field name="total_monthly_rate"/>
+                                        <field name="currency_id"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Property Management" id="custom_clients.menu_root"
+                  groups="custom_clients.client_cc,custom_clients.client_acc"/>
+        <menuitem
+                parent="custom_clients.menu_root"
+                name="Properties"
+                id="menu_property_list"
+                action="action_property_management"
+                sequence="3"
+                groups="custom_clients.client_cc,custom_clients.client_acc"/>
+
+    </data>
+</odoo>

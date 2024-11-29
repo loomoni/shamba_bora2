@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record id="client_security_category" model="ir.module.category">
+            <field name="name">Client Management</field>
+            <field name="sequence" eval="1"/>
+        </record>
+
+
+        <record id="client_cc" model="res.groups">
+            <field name="name">Customer Care</field>
+            <field name="category_id" ref="client_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">The user can read and create own department records</field>
+        </record>
+
+        <record id="client_acc" model="res.groups">
+            <field name="name">Accountant</field>
+            <field name="category_id" ref="client_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,233 @@
+<odoo>
+
+    <record id="cash_requests_tree_view" model="ir.ui.view">
+        <field name="name">cash.requests.tree.view</field>
+        <field name="model">account.cash.request</field>
+        <field name="arch" type="xml">
+            <tree string="Cash Requests">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="requester_id"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="total_amount"/>
+                <field name="is_budgeted"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cash_requests_search_view" model="ir.ui.view">
+        <field name="name">cash.requests.search.view</field>
+        <field name="model">account.cash.request</field>
+        <field name="arch" type="xml">
+            <search string="Cash Requests Search">
+                <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                <field name="department_id" string="Department" filter_domain="[('department_id','ilike',self)]"/>
+                <field name="requester_id" string="Requester" filter_domain="[('requester_id','ilike',self)]"/>
+                <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+                <group name="groupby">
+                    <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="requester_id_groupby" string="Requestor" context="{'group_by': 'requester_id'}"/>
+                    <filter name="is_budgeted_groupby" string="Is Budgeted" context="{'group_by': 'is_budgeted'}"/>
+                    <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="cash_requests_form_view" model="ir.ui.view">
+        <field name="name">cash.requests.form.view</field>
+        <field name="model">account.cash.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_send_request" states="draft" string="Send Request" type="object"
+                            class="btn-primary"/>
+
+                    <button name="button_check_ss" states="request" string="Check by SS" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_hod"/>
+                    <button name="button_check_acc" states="checked_ss" string="Check by Accountant" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_accountant"/>
+                    <button name="button_endorse" states="checked_acc" string="Endorse" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_bm"/>
+                    <button name="button_recommend" states="endorsed" string="Approve by FM" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_fm"/>
+                    <button name="button_approve" states="recommended" string="Approve by MD" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_md"/>
+                    <button name="button_funds" states="approved" string="Funds Received" type="object"
+                            class="btn-primary"
+                            groups="cash_requests.cash_request_staff,cash_requests.cash_request_cashier"/>
+                    <button name="button_reset" states="checked_ss,checked_acc,endorsed,recommended,rejected"
+                            string="Review" type="object" class="btn-primary"
+                            groups="cash_requests.cash_request_fm,cash_requests.cash_request_md"/>
+                    <button name="button_reject" states="request,checked_ss,checked_acc,endorsed,recommended"
+                            string="Reject" type="object" class="btn-primary"
+                            groups="cash_requests.cash_request_fm,cash_requests.cash_request_md"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,request,checked_ss,checked_acc,endorsed,recommended,approved,funds_received,closed,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="requester_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="currency_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="department_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="is_budgeted"/>
+                            <field name="is_hq_request"/>
+                        </group>
+                        <group>
+                            <field name="analytic_account_id"
+                                   attrs="{'invisible': [('is_budgeted','=', False)],'required': [('is_budgeted','=', True)]}"
+                                   options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('state','in', ['draft','checked_ss','checked_acc'])]}"
+                           groups="cash_requests.cash_request_accountant,cash_requests.cash_request_bm,cash_requests.cash_request_fm,cash_requests.cash_request_md">
+                        <group>
+                            <field name="from_journal_id" options="{'no_create': True,'no_open': True}"
+                                   attrs="{'required': [('state','=','endorsed')]}"/>
+                            <field name="to_journal_id" options="{'no_create': True,'no_open': True}"
+                                   attrs="{'required': [('state','=','endorsed')]}"/>
+                            <field name="payment_line_id"/>
+                        </group>
+                        <group>
+                            <field name="from_credit_account_id" options="{'no_create': True,'no_open': True}"
+                                   attrs="{'required': [('state','=','endorsed')]}"/>
+                            <field name="to_debit_account_id" options="{'no_create': True,'no_open': True}"
+                                   attrs="{'required': [('state','=','endorsed')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Expenditure">
+                            <field name="line_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="site_id"/>
+                                    <field name="unit_cost"/>
+                                    <field name="total_cost"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="state" invisible="1"/>
+                                            <field name="name"
+                                                   attrs="{'readonly': [('state','in',['approved','funds_received','closed'])]}"/>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <field name="unit_cost"
+                                                       attrs="{'readonly': [('state','in',['approved','funds_received','closed'])]}"/>
+                                            </group>
+                                            <group>
+                                                <field name="total_cost"
+                                                       attrs="{'readonly': [('state','in',['approved','funds_received','closed'])]}"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="site_id"
+                                                   attrs="{'readonly': [('state','in',['approved','funds_received','closed'])]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="description"
+                                                   attrs="{'readonly': [('state','in',['approved','funds_received','closed'])]}"/>
+                                        </group>
+                                        <group>
+                                            <field name="attachment"/>
+                                            <field name="attachment_name" invisible="1"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="total_amount"/>
+                                <field name="total_used"/>
+                                <field name="total_balance" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="Retirement">
+                            <field name="retire_ids" readonly="1">
+                                <tree>
+                                    <field name="name" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="date" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="retire_type" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="description" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="total_amount" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="total_amount"/>
+                                                <field name="expense_journal_id"
+                                                       groups="cash_requests.cash_request_cashier,cash_requests.cash_request_accountant,cash_requests.cash_request_fm"/>
+                                            </group>
+                                            <group>
+                                                <field name="date"/>
+                                                <field name="retire_type"/>
+                                                <field name="state" invisible="1"/>
+                                                <field name="expense_account_id"
+                                                       groups="cash_requests.cash_request_cashier,cash_requests.cash_request_accountant,cash_requests.cash_request_fm"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="description"/>
+                                            <field name="upload_receipt"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cash_requests" model="ir.actions.act_window">
+        <field name="name">Cash Requests</field>
+        <field name="res_model">account.cash.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ready to create a cash request?
+            </p>
+            <p>
+                Let's create a cash request.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Cash Requests" id="cash_requests.menu_root"
+              groups="cash_requests.cash_request_staff,cash_requests.cash_request_hod,cash_requests.cash_request_cashier,cash_requests.cash_request_accountant,cash_requests.cash_request_bm,cash_requests.cash_request_fm,cash_requests.cash_request_md"/>
+
+    <menuitem
+            parent="cash_requests.menu_root"
+            name="Cash Requests"
+            id="menu_cash_requests"
+            action="action_cash_requests"
+            sequence="2"
+            groups="cash_requests.cash_request_staff,cash_requests.cash_request_hod,cash_requests.cash_request_cashier,cash_requests.cash_request_accountant,cash_requests.cash_request_bm,cash_requests.cash_request_fm,cash_requests.cash_request_md"/>
+</odoo>

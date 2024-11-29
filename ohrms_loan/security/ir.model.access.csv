@@ -1,0 +1,59 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_jobuser,hr.job.group_user,hr.model_hr_job,base.group_user,1,1,1,0
+access_hr_loan_line_user,hr.loan.line.group_user,model_hr_loan_line,base.group_user,1,1,0,0
+access_hr_loan_line_officer,hr.loan.line.group_hr_user,model_hr_loan_line,hr.group_hr_user,1,1,1,1
+access_account_move_uinvoice_officer,account.move.group_hr_user,account.model_account_move,hr.group_hr_user,1,1,1,1
+access_account_journal_uinvoice_officer,account.journal.group_hr_user,account.model_account_journal,hr.group_hr_user,1,1,1,1
+acces_account_move_line_officer,account.move.line.group_hr_user,account.model_account_move_line,hr.group_hr_user,1,1,1,1
+acces_ account_account_type_officer, account.account.type.group_hr_user,account.model_account_account_type,hr.group_hr_user,1,1,1,1
+access_hr_loan_line_manager,hr.loan.line,model_hr_loan_line,hr.group_hr_manager,1,1,1,1
+access_account_move_uinvoice_manager,account.move,account.model_account_move,hr.group_hr_manager,1,1,1,1
+access_account_journal_uinvoice_manager,account.journal,account.model_account_journal,hr.group_hr_manager,1,1,1,1
+acces_account_move_line_manager,account.move.line,account.model_account_move_line,hr.group_hr_manager,1,1,1,1
+acces_ account_account_type_manager, account.account.type,account.model_account_account_type,hr.group_hr_manager,1,1,1,1
+access_hr_loan_line_accountant,hr.loan.line,model_hr_loan_line,account.group_account_user,1,1,1,0
+
+access_hr_loan_staff,Loan Staff Group,model_hr_loan,loan_staff,1,1,1,0
+access_hr_loan_hod,Loan HOD Group,model_hr_loan,loan_hod,1,1,1,0
+access_hr_loan_hr,Loan HR Group,model_hr_loan,loan_hr,1,1,1,1
+access_hr_loan_accountant,Loan Accountant Group,model_hr_loan,loan_accountant,1,1,1,1
+access_hr_loan_fm,Loan FM Group,model_hr_loan,loan_fm,1,1,1,1
+access_hr_loan_admin,Loan ADMIN Group,model_hr_loan,loan_admin,1,1,1,1
+
+access_hr_loan_line_staff,Loan Line Staff Group,model_hr_loan_line,loan_staff,1,1,1,0
+access_hr_loan_line_hod,Loan Line HOD Group,model_hr_loan_line,loan_hod,1,1,1,1
+access_hr_loan_line_hr,Loan Line HR Group,model_hr_loan_line,loan_hr,1,1,1,1
+access_hr_loan_line_accountant,Loan Line Accountant Group,model_hr_loan_line,loan_accountant,1,1,1,1
+access_hr_loan_line_fm,Loan Line FM Group,model_hr_loan_line,loan_fm,1,1,1,1
+access_hr_loan_line_admin,Loan Line ADMIN Group,model_hr_loan_line,loan_admin,1,1,1,1
+
+access_hr_job_staff,HR Job Staff Group,hr.model_hr_job,loan_staff,1,1,1,0
+access_hr_job_hod,HR Job HOD Group,hr.model_hr_job,loan_hod,1,1,1,0
+access_hr_job_hr,HR Job HR Group,hr.model_hr_job,loan_hr,1,1,1,1
+access_hr_job_accountant,HR Job Accountant Group,hr.model_hr_job,loan_accountant,1,1,1,1
+access_hr_job_fm,HR Job FM Group,hr.model_hr_job,loan_fm,1,1,1,1
+access_hr_job_admin,HR Job ADMIN Group,hr.model_hr_job,loan_admin,1,1,1,1
+
+access_hr_contract_job_staff,HR Contracts Job Staff Group,hr_contract.model_hr_contract,loan_staff,1,0,0,0
+access_hr_contract_job_hod,HR Contracts Job HOD Group,hr_contract.model_hr_contract,loan_hod,1,0,0,0
+access_hr_contract_job_hr,HR Contracts Job HR Group,hr_contract.model_hr_contract,loan_hr,1,1,1,1
+access_hr_contract_job_accountant,HR Contracts Job Accountant Group,hr_contract.model_hr_contract,loan_accountant,1,0,0,0
+access_hr_contract_job_fm,HR Contracts Job FM Group,hr_contract.model_hr_contract,loan_fm,1,1,1,1
+access_hr_contract_job_admin,HR Contracts Job ADMIN Group,hr_contract.model_hr_contract,loan_admin,1,1,1,1
+
+access_account_move_accountant,Account Move Accountant Group,account.model_account_move,loan_accountant,1,1,1,1
+access_account_move_fm,Account Move FM Group,account.model_account_move,loan_fm,1,1,1,1
+access_account_move_admin,Account Move ADMIN Group,account.model_account_move,loan_admin,1,1,1,1
+
+access_account_journal_accountant,Account Journal Accountant Group,account.model_account_journal,loan_accountant,1,1,1,1
+access_account_journal_fm,Account Journal FM Group,account.model_account_journal,loan_fm,1,1,1,1
+access_account_journal_admin,Account Journal ADMIN Group,account.model_account_journal,loan_admin,1,1,1,1
+
+access_account_move_line_accountant,Account Move Line Accountant Group,account.model_account_move_line,loan_accountant,1,1,1,1
+access_account_move_line_fm,Account Move Line FM Group,account.model_account_move_line,loan_fm,1,1,1,1
+access_account_move_line_admin,Account Move Line ADMIN Group,account.model_account_move_line,loan_admin,1,1,1,1
+
+access_account_type_accountant,Account Type Accountant Group,account.model_account_account_type,loan_accountant,1,1,1,1
+access_account_type_fm,Account Type FM Group,account.model_account_account_type,loan_fm,1,1,1,1
+access_account_type_admin,Account Type ADMIN Group,account.model_account_account_type,loan_admin,1,1,1,1
+

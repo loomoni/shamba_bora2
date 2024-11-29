@@ -1,0 +1,99 @@
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherited" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherited</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="requester_id"/>
+                </xpath>
+                <xpath expr="//form/header" position="replace">
+                    <header>
+                        <button name="action_rfq_send" states="draft" string="Send by Email" type="object"
+                                context="{'send_rfq':True}" class="oe_highlight" invisible="1"/>
+                        <button name="print_quotation" string="Print RFQ" type="object" states="draft"
+                                class="oe_highlight" groups="base.group_user" invisible="1"/>
+                        <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                                class="oe_highlight" id="bid_confirm" groups="custom_purchase.group_purchase_po"/>
+                        <button name="button_recommend" type="object" states="confirmed" string="Recommend Order"
+                                class="oe_highlight" id="bid_recommend"
+                                groups="custom_purchase.group_purchase_accountant"/>
+                        <button name="button_fm_review" type="object" states="to approve" string="Review order"
+                                class="oe_highlight" id="bid_recommend"
+                                groups="custom_purchase.group_purchase_accountant"/>
+                        <button name="button_approve" type="object" states='fm_review' string="Approve Order"
+                                class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                        <button name="cashier_handle" type="object" states="purchase" string="Payment"
+                                class="oe_highlight" id="cashier_handle"
+                                groups="custom_purchase.group_cashier_po"/>
+                        <button name="action_view_invoice" string="Create Bill" type="object" class="oe_highlight"
+                                context="{'create_bill':True}"
+                                attrs="{'invisible': ['|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'in', ('no', 'invoiced'))]}"
+                                groups="custom_purchase.group_purchase_accountant,purchase.group_purchase_manager"/>
+                        <button name="action_rfq_send" states="sent" string="Re-Send by Email" type="object"
+                                context="{'send_rfq':True}" invisible="1"/>
+                        <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                                groups="base.group_user" invisible="1"/>
+                        <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                                id="draft_confirm" groups="custom_purchase.group_purchase_po"/>
+                        <button name="action_rfq_send" states="purchase" string="Send PO by Email" type="object"
+                                context="{'send_rfq':False}"/>
+                        <button name="action_view_invoice" string="Create Bill" type="object"
+                                context="{'create_bill':True}"
+                                attrs="{'invisible': ['|', '|', ('state', 'not in', ('purchase', 'done')), ('invoice_status', 'not in', ('no', 'invoiced')), ('order_line', '=', [])]}"
+                                groups="custom_purchase.group_purchase_accountant,purchase.group_purchase_manager"/>
+                        <button name="button_draft" states="cancel" string="Set to Draft" type="object"
+                                groups="custom_purchase.group_purchase_po,custom_purchase.group_purchase_accountant,purchase.group_purchase_manager"/>
+                        <button name="button_cancel" states="draft,to approve,sent,confirmed" string="Cancel"
+                                type="object"
+                                groups="custom_purchase.group_purchase_po,custom_purchase.group_purchase_accountant,purchase.group_purchase_manager"/>
+                        <button name="button_done" type="object" string="Lock" states="purchase"
+                                groups="purchase.group_purchase_manager"/>
+                        <button name="button_unlock" type="object" string="Unlock" states="done"
+                                groups="purchase.group_purchase_manager"/>
+                        <field name="state" widget="statusbar" statusbar_visible="sent,confirmed,to approve,fm_review,purchase,cashier_handle"
+                               readonly="1"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar,activity</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a purchase order
+                </p>
+            </field>
+        </record>
+
+        <record id="purchase_support_view_form_inherited" model="ir.ui.view">
+            <field name="name">purchase.support.document.view.form.inherited</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='purchase_delivery_invoice']" position="before">
+                    <page string="Supportive Document">
+                        <field name="supportive_document_line_ids">
+                            <tree editable="bottom">
+                                <field name="document_name"/>
+                                <field name="attachment"/>
+                                <field name="attachment_name" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <menuitem id="purchase.menu_purchase_control" name="Supplier Payments" parent="purchase.menu_purchase_root"
+                  sequence="4" groups="custom_purchase.group_purchase_accountant,purchase.group_purchase_manager"/>
+    </data>
+</odoo>

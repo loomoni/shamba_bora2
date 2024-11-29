@@ -1,0 +1,108 @@
+<odoo>
+
+    <record id="vehicle_gatepass_tree_view" model="ir.ui.view">
+      <field name="name">vehicle.gatepass.tree.view</field>
+      <field name="model">fleet.vehicle.gatepass</field>
+      <field name="arch" type="xml">
+          <tree string="Vehicle GatePass">
+              <field name="name"/>
+              <field name="date"/>
+              <field name="vehicle_id"/>
+              <field name="department_id"/>
+              <field name="driver_id"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="vehicle_gatepass_search_view" model="ir.ui.view">
+      <field name="name">vehicle.gatepass.search.view</field>
+      <field name="model">fleet.vehicle.gatepass</field>
+      <field name="arch" type="xml">
+          <search string="Vehicle GatePass Search">
+              <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+              <field name="vehicle_id" string="Vehicle" filter_domain="[('vehicle_id','ilike',self)]"/>
+              <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+              <group name="groupby">
+                  <filter name="vehicle_id_groupby" string="Vehicle" context="{'group_by': 'vehicle_id'}"/>
+                  <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                  <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                  <filter name="driver_id_groupby" string="Driver" context="{'group_by': 'driver_id'}"/>
+                </group>
+          </search>
+      </field>
+    </record>
+
+   <record id="vehicle_gatepass_form_view" model="ir.ui.view">
+        <field name="name">vehicle.gatepass.form.view</field>
+        <field name="model">fleet.vehicle.gatepass</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_approve" states="draft" string="Approve" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_check" states="approved" string="Checked By Security" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_security"/>
+                    <button name="button_return" states="checked" string="Returned" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_staff,fleet_management.fleet_security,fleet_management.fleet_admin"/>
+                    <button name="button_reject" states="draft,approved" string="Reject" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_admin"/>
+                    <button name="button_reset" states="approved,rejected" string="Review" type="object" class="btn-primary"
+                            groups="fleet_management.fleet_security,fleet_management.fleet_admin"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,checked,returned,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="vehicle_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="driver_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="date" />
+                            <field name="department_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="purpose"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="time_out"/>
+                            <field name="km_in"/>
+                        </group>
+                        <group>
+                            <field name="km_out"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+   </record>
+
+   <record id="action_vehicle_gatepass" model="ir.actions.act_window">
+        <field name="name">Vehicle GatePass</field>
+        <field name="res_model">fleet.vehicle.gatepass</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a vehicle gatepass?
+          </p><p>
+              Let's create a vehicle gatepass.
+          </p>
+        </field>
+   </record>
+
+   <menuitem
+        parent="fleet_management.menu_root"
+        name="Vehicle GatePass"
+        id="menu_vehicle_gatepass"
+        action="action_vehicle_gatepass"
+        sequence="5"
+        groups="fleet_management.fleet_staff,fleet_management.fleet_security,fleet_management.fleet_hod,fleet_management.fleet_admin"/>
+</odoo>

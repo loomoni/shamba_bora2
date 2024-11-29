@@ -1,0 +1,275 @@
+<odoo>
+
+    <record id="wage_requests_tree_view" model="ir.ui.view">
+        <field name="name">wage.requests.tree.view</field>
+        <field name="model">account.wage.request</field>
+        <field name="arch" type="xml">
+            <tree string="Wage Requests">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="requester_id"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="no_of_labourers"/>
+                <field name="total_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="wage_requests_search_view" model="ir.ui.view">
+        <field name="name">wage.requests.search.view</field>
+        <field name="model">account.wage.request</field>
+        <field name="arch" type="xml">
+            <search string="Wage Requests Search">
+                <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                <field name="department_id" string="Department" filter_domain="[('department_id','ilike',self)]"/>
+                <field name="requester_id" string="Requester" filter_domain="[('requester_id','ilike',self)]"/>
+                <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+                <group name="groupby">
+                    <filter name="department_id_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="requester_id_groupby" string="Requestor" context="{'group_by': 'requester_id'}"/>
+                    <filter name="state_groupby" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="wage_requests_form_view" model="ir.ui.view">
+        <field name="name">wage.requests.form.view</field>
+        <field name="model">account.wage.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_ss" states="draft" string="Check by SS" type="object" class="btn-primary"
+                            groups="wages.wage_request_hod"/>
+                    <button name="button_hr" states="checked_ss" string="Check by HR" type="object" class="btn-primary"
+                            groups="wages.wage_request_hr"/>
+                    <button name="button_recommend" states="checked_hr" string="Recommend" type="object"
+                            class="btn-primary"
+                            groups="wages.wage_request_accountant"/>
+                    <button name="button_endorse" states="recommended" string="Endorse" type="object"
+                            class="btn-primary"
+                            groups="wages.wage_request_bm"/>
+                    <button name="button_approve" states="endorsed" string="Approve" type="object" class="btn-primary"
+                            groups="wages.wage_request_fm"/>
+                    <button name="button_payment_initiate" states="approved" string="Prepare Payment Sheet"
+                            type="object" class="btn-primary"
+                            groups="wages.wage_request_cashier"/>
+                    <button name="button_payment_confirm" states="payment_initiated" string="Confirm Payment Sheet"
+                            type="object" class="btn-primary"
+                            groups="wages.wage_request_accountant"/>
+                    <button name="button_reset" states="checked_ss,checked_hr,endorsed,recommended,rejected"
+                            string="Review" type="object" class="btn-primary"
+                            groups="wages.wage_request_fm,wages.wage_request_bm"/>
+                    <button name="button_reject" states="draft,checked_ss,checked_hr,endorsed,recommended"
+                            string="Reject" type="object" class="btn-primary"
+                            groups="wages.wage_request_fm,wages.wage_request_bm"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,checked_ss,checked_hr,recommended,endorsed,approved,payment_initiated,payment_confirmed,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="requester_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="activity_desc"/>
+                            <field name="currency_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="department_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="no_of_labourers"/>
+                            <field name="total_amount"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible': [('state','not in', ['payment_initiated','payment_confirmed'])]}"
+                           groups="wages.wage_request_accountant,wages.wage_request_fm,wages.wage_request_bm">
+                        <group>
+                            <field name="from_journal_id" options="{'no_create': True}"/>
+                            <field name="to_journal_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="from_credit_account_id" options="{'no_create': True}"/>
+                            <field name="to_debit_account_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="payment_sheet"
+                                   attrs="{'invisible': [('state','not in', ['approved','payment_initiated','payment_confirmed'])]}"/>
+                        </group>
+                        <group>
+                            <field name="payment_line_id"
+                                   attrs="{'invisible': [('state','not in', ['payment_confirmed'])]}"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Labour List">
+                            <field name="line_ids"
+                                   attrs="{'readonly': [('state','in', ['approved','payment_initiated','payment_confirmed'])]}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_cost"/>
+                                    <field name="total_cost"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="currency_id" invisible="1"/>
+                                                <field name="unit_cost"/>
+                                            </group>
+                                            <group>
+                                                <field name="quantity"/>
+                                                <field name="total_cost"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="total_amount"/>
+                            </group>
+                        </page>
+                        <page string="Labourers">
+                            <field name="labourer_ids">
+                                <!--                            <field name="labourer_ids"  attrs="{'readonly': [('state','in', ['payment_confirmed'])], 'invisible': [('state','not in', ['approved','payment_initiated','payment_confirmed'])]}">-->
+                                <tree>
+                                    <field name="name"/>
+                                    <!--                                  <field name="currency_id" invisible="1"/>-->
+                                    <field name="contact"/>
+                                    <field name="site"/>
+                                    <!--                                  <field name="total_cost"/>-->
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="site"/>
+                                            </group>
+                                            <group>
+                                                <field name="contact"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2">
+                                <field name="total_amount"/>
+                            </group>
+                        </page>
+                        <page string="Supportive Document">
+                            <field name="supportive_document_line_ids">
+                                <tree editable="bottom">
+                                    <field name="document_name"/>
+                                    <field name="attachment"/>
+                                    <field name="attachment_name" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wage_requests" model="ir.actions.act_window">
+        <field name="name">Wage Requests</field>
+        <field name="res_model">account.wage.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ready to create a wage request?
+            </p>
+            <p>
+                Let's create a wage request.
+            </p>
+        </field>
+    </record>
+
+    <!--    Site configuration starts -->
+
+    <record id="sites_tree_view" model="ir.ui.view">
+        <field name="name">sites.configuration.tree.view</field>
+        <field name="model">sites.configuration</field>
+        <field name="arch" type="xml">
+            <tree string="Site">
+                <field name="name"/>
+                <field name="location"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sites_configuration_form_view" model="ir.ui.view">
+        <field name="name">sites.configuration.form.view</field>
+        <field name="model">sites.configuration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                             <field name="location"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_site_configuration" model="ir.actions.act_window">
+        <field name="name">Site</field>
+        <field name="res_model">sites.configuration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ready to create a site?
+            </p>
+            <p>
+                Let's create a site.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem name="Wage Requests" id="wages.menu_root"
+              groups="wages.wage_request_staff,wages.wage_request_hod,wages.wage_request_cashier,wages.wage_request_hr,wages.wage_request_accountant,wages.wage_request_bm,wages.wage_request_fm"/>
+
+    <menuitem
+            parent="wages.menu_root"
+            name="Wage Requests"
+            id="menu_wage_requests"
+            action="action_wage_requests"
+            sequence="2"
+            groups="wages.wage_request_staff,wages.wage_request_hod,wages.wage_request_cashier,wages.wage_request_hr,wages.wage_request_accountant,wages.wage_request_bm,wages.wage_request_fm"/>
+
+    <menuitem
+            parent="wages.menu_root"
+            name="Configuration"
+            id="menu_configuration_requests"
+            sequence="3"
+    />
+
+    <menuitem
+            parent="wages.menu_configuration_requests"
+            name="Site"
+            id="site_menu_id"
+            action="action_site_configuration"
+            sequence="4"
+    />
+</odoo>

@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    tree tree  -->
+<!--    <record id="register_form_tree_view" model="ir.ui.view">-->
+<!--        <field name="name">register.form.view</field>-->
+<!--        <field name="model">form.registration</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Register Members">-->
+<!--                <field name="name"/>-->
+<!--                <field name="membership_number"/>-->
+<!--                <field name="certificate"/>-->
+<!--                <field name="year_establishment"/>-->
+<!--                <field name="business_no"/>-->
+<!--                <field name="membership_cat"/>-->
+<!--                <field name="company_status"/>-->
+<!--                <field name="chairperson_name"/>-->
+<!--                <field name="executive_name"/>-->
+<!--                <field name="state"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;    form view &ndash;&gt;-->
+<!--    <record id="register_form_form_view" model="ir.ui.view">-->
+<!--        <field name="name">register.form.form.view</field>-->
+<!--        <field name="model">form.registration</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Register Members">-->
+<!--                <header>-->
+<!--                    <button name="button_draft" string="Draft" class="oe_highlight" states="" type="object"/>-->
+<!--                    <button name="button_approve" string="Approve" class="oe_highlight" states="draft" type="object"-->
+<!--                            groups="custom_membership.manager_access_group_id,custom_membership.administrator_access_group_id"-->
+<!--                    />-->
+<!--                    <field name="state" widget="statusbar" statusbar_visible="draft,approve"-->
+<!--                           statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>-->
+<!--                </header>-->
+<!--                <sheet>-->
+<!--                    <div class="oe_title">-->
+<!--                        <h1>-->
+<!--                            Registration Form-->
+<!--                        </h1>-->
+<!--                    </div>-->
+<!--                    <group string="Member Details">-->
+
+<!--                        <group>-->
+<!--                            <field name="membership_number" readonly="1"/>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="certificate"/>-->
+<!--                            <field name="year_establishment"/>-->
+<!--                            <field name="business_no"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="company_status"/>-->
+<!--                            <field name="chairperson_name"/>-->
+<!--                            <field name="chair_title"/>-->
+<!--                            <field name="executive_name"/>-->
+<!--                            <field name="ceo_title"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                    <group>-->
+<!--                        <group>-->
+<!--                            <field name="date_registration"/>-->
+<!--                            <field name="copy_registration_certificate_attachment"-->
+<!--                                   filename="copy_registration_certificate_file_name"/>-->
+<!--                            <field name="copy_registration_certificate_file_name" invisible="1"/>-->
+<!--                        </group>-->
+<!--                        <group>-->
+<!--                            <field name="sector_industry"/>-->
+<!--                            <field name="cluster_id"/>-->
+<!--                            <field name="membership_cat"/>-->
+<!--                            <field name="applicable_fee"/>-->
+<!--                            <field name="annual_fee"/>-->
+<!--                        </group>-->
+<!--                        <group string="Address">-->
+<!--                            <field name="street" placeholder="street"/>-->
+<!--                            <field name="street_two" placeholder="street 2"/>-->
+<!--                            <field name="region_select"/>-->
+<!--                            <field name="district_select"/>-->
+<!--                            <field name="ward" placeholder="Ward"/>-->
+<!--                        </group>-->
+<!--                        <group string="General Contact">-->
+<!--                            <field name="pobox"/>-->
+<!--                            <field name="telephone"/>-->
+<!--                            <field name="email"/>-->
+<!--                            <field name="website" placeholder="www.kalen.co.tz"/>-->
+<!--                        </group>-->
+<!--                    </group>-->
+
+<!--                    <notebook>-->
+<!--                        <page string="Directors">-->
+<!--                            <field name="directors_line_ids">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="nationality"/>-->
+<!--                                    <field name="directors_id" invisible="1"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                        <page string="Business Description">-->
+<!--                            <field name="business_description_ids">-->
+<!--                                <tree editable="bottom">-->
+<!--                                    <field name="business_description"/>-->
+<!--                                    <field name="business_description_id" invisible="1"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                        </page>-->
+<!--                        <page string="Other contacts">-->
+<!--                            <field name="general_contact_lines_ids">-->
+<!--                                <kanban>-->
+<!--                                    <field name="name"/>-->
+<!--                                    <field name="title"/>-->
+<!--                                    <field name="job_position"/>-->
+<!--                                    <field name="phone"/>-->
+<!--                                    <field name="email"/>-->
+<!--                                    <field name="mobile"/>-->
+<!--                                    <field name="general_contact_id" invisible="1"/>-->
+<!--                                    <templates>-->
+<!--                                        <t t-name="kanban-box">-->
+<!--                                            <div class="oe_kanban_global_click">-->
+<!--                                                <div class="o_kanban_image">-->
+<!--                                                </div>-->
+<!--                                                <div class="oe_kanban_details">-->
+<!--                                                    <strong class="o_kanban_record_title">-->
+<!--                                                        <field name="name"/>-->
+<!--                                                    </strong>-->
+<!--                                                    <div name="tags"/>-->
+<!--                                                    <ul>-->
+<!--                                                        <li>Title:-->
+<!--                                                            <field name="title"/>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                    <div name="tags"/>-->
+<!--                                                    <ul>-->
+<!--                                                        <li>Position:-->
+<!--                                                            <field name="job_position"/>-->
+<!--                                                        </li>-->
+
+<!--                                                    </ul>-->
+<!--                                                    <div name="tags"/>-->
+<!--                                                    <ul>-->
+<!--                                                        <li>Email:-->
+<!--                                                            <field name="email"/>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                    <div name="tags"/>-->
+<!--                                                    <ul>-->
+<!--                                                        <li>Phone:-->
+<!--                                                            <field name="phone"/>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                    <div name="tags"/>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </t>-->
+<!--                                    </templates>-->
+<!--                                </kanban>-->
+<!--                            </field>-->
+<!--                        </page>-->
+
+<!--                    </notebook>-->
+<!--                </sheet>-->
+                <!--                <div class="oe_chatter">-->
+                <!--                    <field name="message_follower_ids" widget="mail_followers"/>-->
+                <!--                    <field name="activity_ids" widget="mail_activity"/>-->
+                <!--                    <field name="message_ids" widget="mail_thread"/>-->
+                <!--                </div>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <!--    <record id="registration_action" model="ir.actions.act_window">-->
+    <!--        <field name="name">Registration</field>-->
+    <!--        <field name="type">ir.actions.act_window</field>-->
+    <!--        <field name="res_model">form.registration</field>-->
+    <!--        <field name="view_mode">tree,form</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="o_view_nocontent_smiling_face">-->
+    <!--                &lt;!&ndash; Add Text Here &ndash;&gt;-->
+    <!--            </p>-->
+    <!--            <p>-->
+    <!--                &lt;!&ndash; More details about what a user can do with this object will be OK &ndash;&gt;-->
+    <!--            </p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+    <record id="registration_action" model="ir.actions.act_window">
+        <field name="name">Registration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{"search_default_type_company":1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <!--    Payment part-->
+    <!--    Tree View -->
+    <record id="payment_tree_view" model="ir.ui.view">
+        <field name="name">Payment</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="cluster"/>
+                <field name="type"/>
+                <field name="pay_year"/>
+                <field name="fee_amount" sum="Fee Amount"/>
+                <field name="amount_paid" sum="Amount Paid"/>
+                <field name="amount_remain" sum="Amount Remain"/>
+                <!--                <field name="is_active"/>-->
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Form View -->
+    <record id="payment_form_view" model="ir.ui.view">
+        <field name="name">Payment</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button name="button_approve" string="paid" class="oe_highlight" states="unpaid,partial"
+                            type="object"/>
+                    <button name="button_partial_paid" string="partial paid" states="unpaid,partial" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="unpaid,partial,paid"
+                           statusbar_colors="{'KEY_IS_STATE':'VALUE_IS_COLOR'}"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="cluster"/>
+                            <field name="fee_amount"/>
+                            <field name="pay_year"/>
+
+                        </group>
+                        <group>
+                            <!--                            <field name="pay_date"/>-->
+                            <field name="type"/>
+                            <field name="amount_paid"/>
+                            <!--                            attrs="{'readonly':[('state','in',['paid'])]}"-->
+                            <field name="amount_remain"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Add Payments">
+                            <field name="payment_lines_ids">
+                                <tree editable="bottom">
+                                    <field name="payment_date"/>
+                                    <field name="amount_payment"/>
+                                    <field name="receipt" filename="receipt_file_name"/>
+                                    <field name="receipt_file_name" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    payment graph view -->
+    <record id="view_payment_graph" model="ir.ui.view">
+        <field name="name">payment.graph</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <graph string="Payments">
+                <field name="name"/>
+                <field name="amount_paid" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!--    payment Calendar view -->
+    <record id="payment_calendar_view_id" model="ir.ui.view">
+        <field name="name">payment.calendar</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <calendar string="Payment Calendar" date_start="pay_date" mode="month">
+                <field name="name"/>
+                <field name="pay_date"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <!-- kanban view    -->
+    <record id="payment_kanban_view" model="ir.ui.view">
+        <field name="name">Payment</field>
+        <field name="model">payment</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="fee_amount"/>
+                <field name="type"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <!--                                  <img t-att-src="kanban_image('property.management', 'image_small', record.id.raw_value)" alt="Property"/>-->
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <div name="tags"/>
+                                <ul>
+                                    <li>Fees Amount:
+                                        <field name="fee_amount"/>
+                                    </li>
+                                </ul>
+                                <div name="tags"/>
+                                <strong>
+                                    <field name="state"/>
+                                    <!--                                    <field name="is_active"/>-->
+                                </strong>
+                                <div name="tags"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!--    action view -->
+    <record id="payment_action_view" model="ir.actions.act_window">
+        <field name="name">Payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">payment</field>
+        <field name="view_mode">tree,kanban,calendar,form,graph,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <!--    Configuration Setting file starts -->
+
+    <!--    Categories configuratio part start -->
+
+    <record id="category_tree_view_id" model="ir.ui.view">
+        <field name="name">category.tree.view</field>
+        <field name="model">configuration.setting.category</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    form view -->
+    <record id="category_form_view_id" model="ir.ui.view">
+        <field name="name">category.form.view</field>
+        <field name="model">configuration.setting.category</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="registration_fee"/>
+                        <field name="annual_subscription_fee"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="category_action_id" model="ir.actions.act_window">
+        <field name="name">Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">configuration.setting.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+    <!--    Categories configuration part end -->
+
+    <!--    Cluster Configuration Starts -->
+    <record id="cluster_tree_view" model="ir.ui.view">
+        <field name="name">cluster.tree.view</field>
+        <field name="model">configuration.setting.cluster</field>
+        <field name="arch" type="xml">
+            <tree string="Cluster">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    cluster form view -->
+    <record id="cluster_form_view_id" model="ir.ui.view">
+        <field name="name">cluster.form.view</field>
+        <field name="model">configuration.setting.cluster</field>
+        <field name="arch" type="xml">
+            <form string="Cluster">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="cluster_action_id" model="ir.actions.act_window">
+        <field name="name">Cluster</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">configuration.setting.cluster</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+    <!--    End of Cluster configuration Setting-->
+
+    <!--    Industry Configuration Starts -->
+    <record id="industry_tree_view" model="ir.ui.view">
+        <field name="name">industry.tree.view</field>
+        <field name="model">configuration.setting.industry</field>
+        <field name="arch" type="xml">
+            <tree string="Industry">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    industry form view -->
+    <record id="industry_form_view" model="ir.ui.view">
+        <field name="name">industry.form.view</field>
+        <field name="model">configuration.setting.industry</field>
+        <field name="arch" type="xml">
+            <form string="Industry">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    industry action view  -->
+    <record id="industry_action_view_id" model="ir.actions.act_window">
+        <field name="name">Industry</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">configuration.setting.industry</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <!--    contact tile code starts -->
+    <!--    tree view -->
+    <record id="contact_title_tree_view" model="ir.ui.view">
+        <field name="name">contact.title</field>
+        <field name="model">contact.title</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <field name="abbreviation"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    contact title form view-->
+    <record id="contact_title_form_view" model="ir.ui.view">
+        <field name="name">contact.form.view</field>
+        <field name="model">contact.title</field>
+        <field name="arch" type="xml">
+            <form string="Contact Title">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="abbreviation"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    contact title action view -->
+    <record id="contact_title_action_view" model="ir.actions.act_window">
+        <field name="name">Contact Title</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">contact.title</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+            </p>
+        </field>
+    </record>
+
+    <!--    Engagement Type tree view -->
+    <record id="engagement_type_tree_view" model="ir.ui.view">
+        <field name="name">engagement.type.tree.view</field>
+        <field name="model">engagement.type</field>
+        <field name="arch" type="xml">
+            <tree string="Engagement Type">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Engagement Type form view -->
+    <record id="engagement_type_form_view" model="ir.ui.view">
+        <field name="name">engagement.type.tree.view</field>
+        <field name="model">engagement.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    Engagement Action View -->
+    <record id="engagement_type_action_view_id" model="ir.actions.act_window">
+        <field name="name">Engagement Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">engagement.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                Add Engagement Type
+            </p>
+        </field>
+    </record>
+
+    <!--    Engagement tree view -->
+    <record id="engagement_tree_view" model="ir.ui.view">
+        <field name="name">engagement.tree.view</field>
+        <field name="model">engagement</field>
+        <field name="arch" type="xml">
+            <tree string="Engagement">
+                <field name="engagement_type"/>
+                <field name="region_select"/>
+                <field name="district_select"/>
+                <field name="date"/>
+                <field name="state_select"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Engagement form View -->
+    <record id="engagement_form_view" model="ir.ui.view">
+        <field name="name">engagement.tree.view</field>
+        <field name="model">engagement</field>
+        <field name="arch" type="xml">
+            <form string="Engagement">
+                <sheet>
+                    <group>
+                        <field name="member_non_members"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="member_field" widget="many2many_tags" attrs="{'invisible':[('member_non_members', '!=', True)]}"/>
+                            <field name="non_member_field"  attrs="{'invisible':[('member_non_members', '=', True)]}" />
+                            <field name="engagement_type"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
+                        </group>
+                        <group>
+                            <field name="agenda"/>
+                            <field name="date"/>
+                            <field name="location_name"/>
+                            <field name="venue_name"/>
+                            <field name="state_select"/>
+                        </group>
+                        <group>
+                            <field name="attachment_copy"
+                                   filename="attachment_copy_file_name"/>
+                            <field name="attachment_copy_file_name" invisible="1"/>
+                            <field name="outcome"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    engagement action View -->
+    <record id="engagement_action_view" model="ir.actions.act_window">
+        <field name="name">Engagement</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">engagement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                Create Engagement
+            </p>
+        </field>
+    </record>
+
+    <!--    issues type tree view-->
+    <record id="issues_type_tree_view" model="ir.ui.view">
+        <field name="name">issues.type.tree.view</field>
+        <field name="model">issue.type</field>
+        <field name="arch" type="xml">
+            <tree string="Issues">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    issues type form view-->
+    <record id="issues_type_form_view" model="ir.ui.view">
+        <field name="name">issues.type.form.view</field>
+        <field name="model">issue.type</field>
+        <field name="arch" type="xml">
+            <form string="Issues Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    issues type action View -->
+    <record id="issues_type_action_view_id" model="ir.actions.act_window">
+        <field name="name">Issues Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">issue.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                Create new issue Type
+            </p>
+        </field>
+    </record>
+
+    <!--    issue tree view -->
+    <record id="issue_tree_view" model="ir.ui.view">
+        <field name="name">issue.tree.view</field>
+        <field name="model">issue</field>
+        <field name="arch" type="xml">
+            <tree string="Issues">
+                <field name="name"/>
+                <field name="member_other"/>
+                <field name="location_name"/>
+                <field name="issue_type_id"/>
+                <field name="received_by"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    issue form view -->
+    <record id="issue_form_view" model="ir.ui.view">
+        <field name="name">issue.form.view</field>
+        <field name="model">issue</field>
+        <field name="arch" type="xml">
+            <form string="Issues">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="member_other" widget="many2many_tags"/>
+                            <field name="issue_type_id"/>
+                            <field name="received_by"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
+                            <field name="location_name"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="recommended_intervation"/>
+                            <field name="issue_summary"/>
+                            <field name="conclusion"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    issues action view -->
+    <record id="issues_action_view" model="ir.actions.act_window">
+        <field name="name">Issues</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">issue</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                Create New Issue
+            </p>
+        </field>
+    </record>
+
+    <!--    Event theme's tree view -->
+    <record id="event_theme_tree_view" model="ir.ui.view">
+        <field name="name">event.theme.tree.view</field>
+        <field name="model">event.theme</field>
+        <field name="arch" type="xml">
+            <tree string="Event Themes">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Event theme's form view -->
+    <record id="event_theme_form_view" model="ir.ui.view">
+        <field name="name">event.theme.form.view</field>
+        <field name="model">event.theme</field>
+        <field name="arch" type="xml">
+            <form string="Event Themes">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    Event Themes Action View -->
+    <record id="event_theme_action_view" model="ir.actions.act_window">
+        <field name="name">Event Themes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event.theme</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No Event themes Created, Let Create One
+            </p>
+        </field>
+    </record>
+
+    <!--    Event tree view -->
+    <record id="event_tree_view" model="ir.ui.view">
+        <field name="name">event.tree.view</field>
+        <field name="model">event</field>
+        <field name="arch" type="xml">
+            <tree string="Event">
+                <field name="name"/>
+                <field name="event_them"/>
+                <field name="event_organizer"/>
+                <field name="venue"/>
+                <field name="location_name"/>
+                <field name="stakeholder"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Event form view -->
+    <record id="event_form_view" model="ir.ui.view">
+        <field name="name">event.form.view</field>
+        <field name="model">event</field>
+        <field name="arch" type="xml">
+            <form string="Event">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="event_them"/>
+                            <field name="event_organizer"/>
+                            <field name="venue"/>
+                            <field name="region_select"/>
+                            <field name="district_select"/>
+                        </group>
+                        <group>
+                            <field name="location_name"/>
+                            <field name="stakeholder"/>
+                            <field name="expected_no_participant"/>
+                            <field name="start_date" widget="daterange" options="{'related_end_date': 'finish_date'}"/>
+                            <field name="finish_date" widget="daterange"
+                                   options="{'related_start_date': 'start_date'}"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="conclusion"/>
+                            <field name="attachment_copy"
+                                   filename="attachment_copy_file_name"/>
+                            <field name="attachment_copy_file_name" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    event action view -->
+    <record id="event_action_view_id" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No event Created, Let create One.
+            </p>
+        </field>
+    </record>
+
+    <!--    status tree view -->
+    <record id="status_tree_view" model="ir.ui.view">
+        <field name="name">status.tree.view</field>
+        <field name="model">status</field>
+        <field name="arch" type="xml">
+            <tree string="Status">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    status form view -->
+    <record id="status_form_view" model="ir.ui.view">
+        <field name="name">status.form.view</field>
+        <field name="model">status</field>
+        <field name="arch" type="xml">
+            <form string="Status">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--    status action view -->
+    <record id="status_action_view" model="ir.actions.act_window">
+        <field name="name">Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">status</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No status created yet, Let create one
+            </p>
+        </field>
+    </record>
+
+    <!--    region tree view -->
+    <record id="region_tree_view" model="ir.ui.view">
+        <field name="name">region.tree.view</field>
+        <field name="model">region</field>
+        <field name="arch" type="xml">
+            <tree string="Region">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    region form view -->
+    <record id="region_form_view" model="ir.ui.view">
+        <field name="name">region.form.view</field>
+        <field name="model">region</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="District">
+                            <field name="district_line_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    region action view -->
+    <record id="region_action_view" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">region</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No region created, Start create
+            </p>
+        </field>
+    </record>
+
+    <!--    Chair person /President Title tree view -->
+    <record id="chair_person_title_tree_view" model="ir.ui.view">
+        <field name="name">chair.person.title.tree.view</field>
+        <field name="model">chair.person.title</field>
+        <field name="arch" type="xml">
+            <tree string="Title">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    Chairperson /President Title Form view -->
+    <record id="chair_person_title_form_view" model="ir.ui.view">
+        <field name="name">chair.person.title.form.view</field>
+        <field name="model">chair.person.title</field>
+        <field name="arch" type="xml">
+            <form string="Title">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    chair person title action view -->
+    <record id="chair_person_title_action_view" model="ir.actions.act_window">
+        <field name="name">Title</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">chair.person.title</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                <!-- Add Text Here -->
+            </p>
+            <p>
+                <!-- More details about what a user can do with this object will be OK -->
+                No titles created yet, let create.
+            </p>
+        </field>
+    </record>
+
+    <!--    Calendar view status -->
+    <record id="event_calendar" model="ir.ui.view">
+        <field name="name">event.calendar</field>
+        <field name="model">event</field>
+        <field name="arch" type="xml">
+            <calendar string="Event Calendar" date_start="start_date" mode="month" quick_add="False" color="name">
+                <field name="name"/>
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!--    Calendar Action view -->
+    <record id="event_action_overview" model="ir.actions.act_window">
+        <field name="name">Event View</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event</field>
+        <field name="view_mode">calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create new venue here!!!
+            </p>
+        </field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="membership_root" name="Membership" sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="registration_id" name="Registration" parent="membership_root" action="registration_action"
+              sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="payment_id" name="Payment" parent="membership_root" action="payment_action_view" sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="engagement_id" name="Engagement" parent="membership_root" action="engagement_action_view"
+              sequence="3"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="issues_id" name="Issues" parent="membership_root" action="issues_action_view" sequence="4"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="event_menu_action_id" name="Events" parent="membership_root" sequence="5"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="event_menu_action_calendar_id" name="Events Overview" parent="event_menu_action_id"
+              action="event_action_overview"
+              sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="event_menu_action_all_events_id" name="Add Events" parent="event_menu_action_id"
+              action="event_action_view_id"
+              sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="configuration_id" name="Configuration" parent="membership_root" sequence="6"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="category_menu_action" name="Categories" parent="configuration_id" action="category_action_id"
+              sequence="1"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="cluster_menu_action" name="Cluster" parent="configuration_id" action="cluster_action_id"
+              sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="industry_menu_action" name="Industry" parent="configuration_id" action="industry_action_view_id"
+              sequence="3"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="engagement_type_menu_action" name="Engagement Types" parent="configuration_id"
+              action="engagement_type_action_view_id"
+              sequence="4"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="issues_type_menu_action" name="Issues Types" parent="configuration_id"
+              action="issues_type_action_view_id" sequence="5"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="event_theme_menu_action" name="Event Themes" parent="configuration_id"
+              action="event_theme_action_view" sequence="6"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="status_menu_action" name="Status" parent="configuration_id"
+              action="status_action_view" sequence="7"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="region_menu_action" name="Region" parent="configuration_id"
+              action="region_action_view" sequence="8"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="contact_title_id" name="Contact Title" parent="configuration_id" action="contact_title_action_view"
+              sequence="9"/>
+
+</odoo>

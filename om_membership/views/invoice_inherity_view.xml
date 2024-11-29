@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="invoice_inherit_id" model="ir.ui.view">
+        <field name="name">invoice.inherit.id</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Company</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Operator</attribute>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="reg_payment"/>
+                <field name="annual_payment"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_inherit_tree_id" model="ir.ui.view">
+        <field name="name">invoice.inherit.tree.id</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <!-- Add new fields here -->
+                <attribute name="string">Company</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

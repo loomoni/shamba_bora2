@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="menu_registration_form" model="website.menu">
+        <field name="name">Registration Form</field>
+        <field name="url">/registration_form</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <template id="registration_template_form_id" name="Registration Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form role="form" action="/create/registration" method="POST">
+                            <h1 class="col-md-12">Registration Form</h1>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="row">
+                                    <group>
+                                        <label for="company_name" class="control-label">
+                                            
+                                        </label>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <div class="form-group">
+                                            <label for="company_name" class="control-label">Company Name</label>
+                                            <input type="text" name="name" t-att-value="name" id="name"
+                                                   class="form-control" placeholder="e.g. Amsha" required="required"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="certificate" class="control-label">Certificate of Incorporation
+                                            </label>
+                                            <input type="text" name="certificate" t-att-value="certificate"
+                                                   id="certificate"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="membership_cat" class="control-label">Category</label>
+                                            <select name="membership_cat" class="form-control link-style">
+                                                <t t-foreach='membership_category_rec' t-as="category">
+                                                    <option t-esc='category.name' t-att-value='category.id'/>
+                                                </t>
+                                            </select>
+                                        </div>
+
+                                    </group>
+                                    <group>
+                                        <div class="col-md-12">
+
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <div class="form-group">
+                                            <label for="year_establishment" class="control-label">Year of Establishment
+                                            </label>
+                                            <input type="text" name="year_establishment"
+                                                   t-att-value="year_establishment"
+                                                   id="year_establishment"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="business_no" class="control-label">Business License Number
+                                            </label>
+                                            <input type="text" name="business_no" t-att-value="business_no"
+                                                   id="business_no"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="company_status" class="control-label">Company Status</label>
+                                            <select class="form-control" name="company_status"
+                                                    t-att-value="company_status"
+                                                    id="company_status">
+                                                <option t-attf-value="private">Private</option>
+                                                <option t-attf-value="public">Public</option>
+                                            </select>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <div class="col-md-12">
+
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <div class="form-group">
+                                            <label for="chairperson_name" class="control-label">Chairperson Name</label>
+                                            <input type="text" name="chairperson_name" t-att-value="chairperson_name"
+                                                   id="chairperson_name"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="executive_name" class="control-label">CEO/Executive Director
+                                                Name
+                                            </label>
+                                            <input type="text" name="executive_name" t-att-value="executive_name"
+                                                   id="executive_name"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date_registration" class="control-label">Date of Registration
+                                            </label>
+                                            <input type="date" name="date_registration" t-att-value="date_registration"
+                                                   id="date_registration"
+                                                   class="form-control" required="required"/>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <div class="col-md-12">
+
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <label for="company_name" class="control-label">
+
+                                        </label>
+                                        <div class="form-group">
+                                            <label for="sector_industry" class="control-label">Sector/Industry
+                                            </label>
+                                            <select name="sector_industry" class="form-control link-style">
+                                                <t t-foreach='industry_rec' t-as="industry">
+                                                    <option t-esc='industry.name' t-att-value='industry.id'/>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cluster_id" class="control-label">Cluster</label>
+                                            <select name="cluster_id" class="form-control link-style">
+                                                <t t-foreach='cluster_rec' t-as="cluster">
+                                                    <option t-esc='cluster.name' t-att-value='cluster.id'/>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </group>
+                            </div>
+
+
+                            <h1 class="col-md-6" color="blue">Address</h1>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="street">Street</label>
+                                <div class="col-md-4">
+                                    <input id="street" name="street" type="text" placeholder="street"
+                                           class="form-control input-md" t-att-value="street"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="street_two">Street two</label>
+                                <div class="col-md-4">
+                                    <input id="street_two" name="street_two" type="text" placeholder="street two"
+                                           class="form-control input-md" t-att-value="street"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="region_select" class="col-md-4 control-label">Region</label>
+                                <div class="col-md-4">
+                                    <select name="region_select" class="form-control link-style">
+                                        <t t-foreach='region_rec' t-as="region">
+                                            <option t-esc='region.name' t-att-value='region.id'/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="district_select" class="col-md-4 control-label">District</label>
+                                <div class="col-md-4">
+                                    <select name="district_select" class="form-control link-style">
+                                        <t t-foreach='district_rec' t-as="district">
+                                            <option t-esc='district.name' t-att-value='district.id'/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ward" class="col-md-4 control-label">Ward</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="ward" t-att-value="ward"
+                                           id="ward"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="website" class="col-md-4 control-label">Website</label>
+                                <div class="col-md-4">
+                                    <input type="text" name="website" t-att-value="website"
+                                           id="website"
+                                           class="form-control"
+                                           placeholder="www.kalen.co.tz"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"/>
+                                <div class="col-md-4">
+                                    <input name="Send" value="Register" class="btn btn-primary" type="submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="member_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/member-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">custom_membership.member_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="custom_membership.member_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Thanks!</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Successfully register your Company
+                                    </div>
+                                    <p>
+                                        We will get back to you soon
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

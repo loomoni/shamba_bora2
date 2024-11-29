@@ -1,0 +1,26 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property_cc,Propery Management Customer Care,model_property_management,client_cc,1,1,1,1
+access_property_acc,Propery Management Accountant,model_property_management,client_acc,1,1,1,1
+
+access_property_units_cc,Propery Units Customer Care,model_property_units,client_cc,1,1,1,1
+access_property_units_acc,Propery Units Accountant,model_property_units,client_acc,1,1,1,1
+
+access_client_management_cc,Client Management Customer Care,model_property_client_management,client_cc,1,1,1,0
+access_client_management_acc,Client Management Accountant,model_property_client_management,client_acc,1,1,1,1
+
+access_client_payment_plan_cc,Client Payment Plan Customer Care,model_property_client_payment_plan,client_cc,1,1,1,1
+access_client_payment_plan_acc,Client Payment Plan Accountant,model_property_client_payment_plan,client_acc,1,1,1,1
+
+access_property_client_unit_cc,Property Client Unit Customer Care,model_property_client_units,client_cc,1,1,1,1
+access_property_client_unit_acc,Property Client Unit Accountant,model_property_client_units,client_acc,1,1,1,1
+
+access_client_invoice_cc,Client Invoices Customer Care,account.model_account_invoice,client_cc,1,0,0,0
+access_client_invoice_acc,Client Invoices Accountant,account.model_account_invoice,client_acc,1,1,1,1
+
+access_region,Region Form,model_region,,1,1,1,1
+
+access_district_lines,district lines,model_district_lines,,1,1,1,1
+
+access_region_model,Region Form,model_street,,1,1,1,1
+
+access_street_lines,district lines,model_street_lines,,1,1,1,1

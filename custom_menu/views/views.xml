@@ -1,0 +1,71 @@
+<odoo>
+  <record id="make_invisible" model="res.groups">
+      <field name="name">Invisible</field>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_budget.menu_act_crossovered_budget_view">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_budget.menu_act_crossovered_budget_lines_view">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_asset.menu_action_account_asset_asset_form">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_asset.menu_asset_depreciation_confirmation_wizard">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="account.menu_finance_entries_management">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_asset.menu_action_asset_asset_report">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_asset.menu_action_account_asset_asset_list_normal_purchase">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="om_account_budget.menu_budget_post_form">
+      <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record id="account.action_account_payments" model="ir.actions.act_window">
+      <field name="name">Receipts</field>
+  </record>
+
+  <record model="ir.ui.menu" id="hr_holidays.hr_holidays_menu_config_activity_type">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="hr_holidays.menu_hr_holidays_approvals">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="hr_holidays.menu_hr_holidays_report">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="hr_holidays.menu_open_allocation">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="purchase.purchase_report">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="purchase.menu_purchase_rfq">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <record model="ir.ui.menu" id="purchase.product_product_menu">
+     <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+  </record>
+
+  <menuitem name="Receipts" action="account.action_account_payments" id="account.menu_action_account_payments_receivable" parent="account.menu_finance_receivables" sequence="15"/>
+</odoo>

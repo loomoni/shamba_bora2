@@ -1,0 +1,155 @@
+<odoo>
+  <data>
+      <record id="budget_version_search_view" model="ir.ui.view">
+        <field name="name">budget.version.search.view</field>
+        <field name="model">crossovered.budget.version</field>
+        <field name="arch" type="xml">
+            <search string="budget version search">
+                <field name="name"/>
+                <field name="version_number"/>
+                <field name="amount_total"/>
+            </search>
+        </field>
+      </record>
+
+      <record id="action_budget_versions_list" model="ir.actions.act_window">
+        <field name="name">Department Budget Versions</field>
+        <field name="res_model">crossovered.budget.version</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{"default_parent_dept_budget_id":active_id}</field>
+        <field name="domain">[('parent_dept_budget_id','=',active_id)]</field>
+        <field name="search_view_id" ref="budget_version_search_view"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Here, you can view versions of the department budget
+            </p>
+        </field>
+      </record>
+      <record id="crossovered_budget_form_inherited" model="ir.ui.view">
+        <field name="name">crossovered.budget.form.inherited</field>
+        <field name="model">crossovered.budget</field>
+        <field name="inherit_id" ref="om_account_budget.crossovered_budget_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_budget_done']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/header/button[@name='action_budget_cancel']" position="replace">
+                <button string="Revise Budget" name="action_budget_cancel" type="object" attrs="{'invisible': ['|',('state', 'not in', ['confirm','validate']),('annual_budget_status','=','approved')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after" >
+                <field name="annual_budget_status" invisible="1"/>
+                <field name="department_id" />
+                <field name="branch_id" />
+                <field name="amount_total" />
+            </xpath>
+            <xpath expr="//field[@name='date_from']" position="replace" >
+                 <group>
+                     <field name="date_from" class="oe_inline" readonly="1"/>
+                 </group>
+            </xpath>
+            <xpath expr="//field[@name='date_to']" position="replace" >
+                 <group>
+                     <field name="date_to" class="oe_inline" readonly="1"/>
+                 </group>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after" >
+                <group>
+                  <field name="annual_budget_id" string="Annual Budget" options="{'no_create':True,'no_open':True}" />
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="before" >
+                <div class="oe_button_box" name="button_box">
+                    <button name="%(action_budget_versions_list)d" type="action" class="oe_stat_button" icon="fa-list-alt" attrs="{'invisible': [('version_number', '=', 0)]}">
+                        <field name="version_number" widget="statinfo" string="Budget Versions"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='crossovered_budget_line']" position="replace" >
+                <field name="crossovered_budget_line"
+                                   context="{'default_date_from': date_from,'default_date_to': date_to, 'default_department_id': department_id, 'special_display_name': True}" colspan="4"
+                                   nolabel="1" attrs="{'readonly':[('state','!=','draft')]}">
+                    <tree string="Budget Lines" decoration-success="is_above_budget and planned_amount &gt; 0" decoration-danger="is_above_budget and planned_amount &lt; 0" editable="bottom" limit="300">
+                        <field name="department_id" invisible="1"/>
+                        <field name="budget_group_id" domain="[('department_id','=',department_id)]"/>
+                        <field name="budget_code"/>
+                        <field name="budget_line_desc"/>
+                        <field name="account_id"/>
+                        <field name="department_id" invisible="1"/>
+                        <field name="general_budget_id" invisible="1"/>
+                        <field name="analytic_account_id" groups="analytic.group_analytic_accounting" options="{'no_create':True,'no_open':True}" invisible="1"/>
+                        <field name="date_from" invisible="1"/>
+                        <field name="date_to" invisible="1"/>
+                        <field name="paid_date" groups="base.group_no_one" invisible="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="planned_amount" string="Projected Amount" sum="Projected Amount"/>
+                        <field name="practical_amount" string="Actual Used Amount" sum="Actual Used Amount"/>
+                        <field name="theoritical_amount" sum="Theoretical Amount" invisible="1"/>
+                        <field name="percentage"  widget="percentage" invisible="1"/>
+                        <button type="object" name="action_open_budget_entries" string="Entries..."
+                                icon="fa-arrow-circle-o-right"/>
+                        <field name="is_above_budget" invisible="1"/>
+                    </tree>
+                    <form string="Budget Lines">
+                        <group>
+                            <group>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="general_budget_id" invisible="1"/>
+                                <field name="budget_group_id"/>
+                                <field name="budget_line_desc"/>
+                                <field name="account_id"/>
+                                <field name="planned_amount" string="Projected Amount"/>
+                                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"  invisible="1"/>
+                            </group>
+                            <group>
+                                <label for="date_from" string="Period"/>
+                                <div>
+                                    <field name="date_from" class="oe_inline"/>
+                                    -
+                                    <field name="date_to" class="oe_inline"/>
+                                </div>
+                                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </form>
+                </field>
+            </xpath>
+        </field>
+      </record>
+
+      <record id="crossovered_budget_search_inherited" model="ir.ui.view">
+        <field name="name">crossovered.budget.search.inherited</field>
+        <field name="model">crossovered.budget</field>
+        <field name="inherit_id" ref="om_account_budget.view_crossovered_budget_search"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='state']" position="after">
+              <group name="groupby">
+                    <filter name="branch_dept_groupby" string="Branch" context="{'group_by': 'branch_id'}"/>
+                    <filter name="dept_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+              </group>
+          </xpath>
+        </field>
+      </record>
+
+      <record id="analytical_account_form_inherited" model="ir.ui.view">
+            <field name="name">analytical.account.form.inherited</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='partner_id']" position="after" >
+                    <field name="department_id" />
+                    <field name="display_name" />
+              </xpath>
+            </field>
+      </record>
+
+      <menuitem parent="custom_budget_management.menu_root"
+                  name="Department Budgets"
+                  id="menu_department_budget"
+                  action="om_account_budget.act_crossovered_budget_view"
+                  sequence="5"
+                  groups="custom_budget_management.budget_hod,custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+  </data>
+</odoo>

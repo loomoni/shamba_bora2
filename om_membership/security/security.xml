@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="model_category_membership" model="ir.module.category">
+        <field name="name">Membership</field>
+        <field name="sequence">11</field>
+    </record>
+
+    <record id="administrator_access_group_id" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="model_category_membership"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="manager_access_group_id" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="model_category_membership"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="operator_access_group_id" model="res.groups">
+        <field name="name">Operator</field>
+        <field name="category_id" ref="model_category_membership"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+</odoo>
+
+
+

@@ -1,0 +1,84 @@
+<odoo>
+
+    <record id="budget_groups_tree_view" model="ir.ui.view">
+      <field name="name">budget.groups.view</field>
+      <field name="model">budget.groups</field>
+      <field name="arch" type="xml">
+          <tree string="Budget Groups">
+              <field name="name"/>
+              <field name="group_type"/>
+              <field name="group_code"/>
+              <field name="branch_id"/>
+              <field name="department_id"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="budget_groups_search_view" model="ir.ui.view">
+    <field name="name">budget.groups.search.view</field>
+     <field name="model">budget.groups</field>
+    <field name="arch" type="xml">
+        <search string="budget groups search">
+            <field name="name" string="Group Name" filter_domain="[('name','ilike',self)]"/>
+            <field name="group_code" string="Group Code" filter_domain="[('group_code','ilike',self)]"/>
+            <field name="group_type" string="Group Type" filter_domain="[('group_type','ilike',self)]"/>
+            <group name="groupby">
+                <filter name="branch_budgetg_groupby" string="Branch" context="{'group_by': 'branch_id'}"/>
+                <filter name="dept_budgetg_groupby" string="Department" context="{'group_by': 'department_id'}"/>
+            </group>
+        </search>
+    </field>
+    </record>
+
+   <record id="budget_groups_form_view" model="ir.ui.view">
+        <field name="name">budget.groups.form.view</field>
+        <field name="model">budget.groups</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Group Name">
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="department_id" attrs="{'required': True}"/>
+                            <field name="branch_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Group Type">
+                            <field name="group_type"/>
+                        </group>
+                        <group string="Group Code">
+                            <field name="group_code"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="account_id" attrs="{'required': True}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_budget_group" model="ir.actions.act_window">
+        <field name="name">Budget Groups</field>
+        <field name="res_model">budget.groups</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a budget group?
+          </p><p>
+              Let's create a budget group.
+          </p>
+        </field>
+    </record>
+
+      <menuitem
+        parent="custom_budget_management.menu_root"
+        id="menu_budget_groups"
+        action="action_budget_group"
+        sequence="2"
+        groups="custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+</odoo>

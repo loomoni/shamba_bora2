@@ -1,0 +1,127 @@
+<odoo>
+  <record id="hr_payslip_run_form_inherited" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.inherited</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="before" >
+                <field name="branch_id"/>
+            </xpath>
+            <xpath expr="//field[@name='slip_ids']" position="replace" >
+              <field name="slip_ids">
+                <tree create="false">
+                  <field name="employee_id" />
+                  <field name="number" />
+                  <field name="name" />
+                  <field name="date_from" />
+                  <field name="date_to" />
+                  <field name="state" />
+                  <field name="company_id" />
+                </tree>
+              </field>
+            </xpath>
+            <xpath expr="//form/header/button[@name='close_payslip_run']" position="replace">
+              <button name="close_payslip_run" type="object" string="Close" states="draft,generated,hr_confirmed,bm_confirmed,confirmed"
+                      class="oe_highlight" groups="hr_payroll.group_hr_payroll_manager"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='draft_payslip_run']" position="before">
+              <button name="hr_checked_payslip_run" type="object" string="Confirm Payslips" states="generated"
+                      class="oe_highlight" groups="hr_payroll.group_hr_payroll_user"/>
+              <button name="bm_checked_payslip_run" type="object" string="Endorse Payslips" states="hr_confirmed"
+                      class="oe_highlight" groups="custom_payroll.group_hr_payroll_bm"/>
+              <button name="confirm_payslip_run" type="object" string="Approve Payslips" states="bm_confirmed"
+                      class="oe_highlight" groups="hr_payroll.group_hr_payroll_manager"/>
+            </xpath>
+            <xpath expr="//form/sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
+        </field>
+  </record>
+
+  <record id="hr_payslip_custom_form_inherit_view" model="ir.ui.view">
+        <field name="name">hr.payslip.custom.inherit.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='journal_id']" position="attributes">
+                <attribute name="string">Bank Journal</attribute>
+             </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+              <field name="is_computed" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='paid']" position="after">
+              <field name="payment_id" attrs="{'invisible': [('paid','=',False)]}"/>
+            </xpath>
+            <xpath expr="//form/header/field[@name='state']" position="replace">
+              <field name="state" widget="statusbar" statusbar_visible="draft,verify,hr_confirmed,bm_confirmed,done,cancel"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='action_payslip_done']" position="replace">
+                <button string="Approve Payslip" name="action_payslip_done" type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('state', 'not in', ['bm_confirmed']),('is_computed','=',False)]}"
+                        groups="hr_payroll.group_hr_payroll_manager"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='compute_sheet']" position="replace">
+                <button string="Compute Sheet" name="compute_sheet" type="object" class="oe_highlight" attrs="{'invisible': ['|',('state', 'not in', ['draft']),('is_computed','=',True)]}"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='compute_sheet']" position="after">
+                <button string="Reset Computed Sheet" name="button_reset_sheet" type="object" class="oe_highlight" attrs="{'invisible': ['|',('state', 'not in', ['draft']),('is_computed','=',False)]}"/>
+                <button string="Submit Payslip" name="button_acc_confirm" type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('state', 'not in', ['draft']),('is_computed','=',False)]}"
+                        groups="custom_payroll.group_hr_payroll_acc"/>
+                <button string="Confirm Payslip" name="button_hr_confirm" type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('state', 'not in', ['verify']),('is_computed','=',False)]}"
+                        groups="hr_payroll.group_hr_payroll_user"/>
+                <button string="Endorse Payslip" name="button_bm_confirm" type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('state', 'not in', ['hr_confirmed']),('is_computed','=',False)]}"
+                        groups="custom_payroll.group_hr_payroll_bm"/>
+            </xpath>
+            <xpath expr="//form/sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
+        </field>
+  </record>
+
+  <record id="hr_contract_custom_view_form_inherited" model="ir.ui.view">
+        <field name="name">hr.contract.custom_view.employee.form.inherited</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//group[@name='salary_and_advantages']" position="attributes">
+             <attribute name="string">Monthly Salary</attribute>
+          </xpath>
+          <xpath expr="//group[@name='salary_and_advantages']/label[1]" position="attributes">
+             <attribute name="string">Basic Salary</attribute>
+          </xpath>
+          <xpath expr="//field[@name='wage']" position="attributes">
+             <attribute name="string">Basic Salary</attribute>
+          </xpath>
+          <xpath expr="//field[@name='reported_to_secretariat']" position="attributes">
+             <attribute name="invisible">True</attribute>
+          </xpath>
+        </field>
+  </record>
+
+  <record id="hr_contract_payroll_form_inherited" model="ir.ui.view">
+        <field name="name">hr.contract.payroll.employee.form.inherited</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_payroll_account.hr_contract_form_inherit"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+             <attribute name="invisible">True</attribute>
+          </xpath>
+        </field>
+  </record>
+
+  <menuitem action="hr_payroll.action_view_hr_payslip_form" id="hr_payroll.menu_department_tree" parent="hr_payroll.menu_hr_payroll_root" groups="custom_payroll.group_hr_payroll_acc,custom_payroll.group_hr_payroll_bm"/>
+
+</odoo>

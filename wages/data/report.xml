@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <report
+            id="wages_request_id_pdf_print"
+            model="account.wage.request"
+            string="Wages report"
+            menu="True"
+            report_type="qweb-pdf"
+            name="wages.wages_request_template"
+            file="wages.wages_request_template"
+    />
+
+</odoo>

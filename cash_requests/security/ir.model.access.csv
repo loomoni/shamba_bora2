@@ -1,0 +1,56 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cash_request_staff,Cash Request Staff Group,model_account_cash_request,cash_request_staff,1,1,1,0
+access_cash_request_hod,Cash Request HOD Group,model_account_cash_request,cash_request_hod,1,1,1,1
+access_cash_request_cashier,Cash Request Cashier Group,model_account_cash_request,cash_request_cashier,1,1,1,1
+access_cash_request_acc,Cash Request ACC Group,model_account_cash_request,cash_request_accountant,1,1,1,1
+access_cash_request_bm,Cash Request BM Group,model_account_cash_request,cash_request_bm,1,1,1,1
+access_cash_request_fm,Cash Request FM Group,model_account_cash_request,cash_request_fm,1,1,1,1
+access_cash_request_md,Cash Request MD Group,model_account_cash_request,cash_request_md,1,1,1,1
+
+access_cash_request_line_staff,Cash Request Line Staff Group,model_account_cash_request_lines,cash_request_staff,1,1,1,0
+access_cash_request_line_hod,Cash Request Line HOD Group,model_account_cash_request_lines,cash_request_hod,1,1,1,1
+access_cash_request_line_cashier,Cash Request Line Cashier Group,model_account_cash_request_lines,cash_request_cashier,1,1,1,1
+access_cash_request_line_acc,Cash Request Line ACC Group,model_account_cash_request_lines,cash_request_accountant,1,1,1,1
+access_cash_request_line_bm,Cash Request Line BM Group,model_account_cash_request_lines,cash_request_bm,1,1,1,1
+access_cash_request_line_fm,Cash Request Line FM Group,model_account_cash_request_lines,cash_request_fm,1,1,1,1
+access_cash_request_line_md,Cash Request Line MD Group,model_account_cash_request_lines,cash_request_md,1,1,1,1
+
+access_cash_retirement_staff,Cash Retirement Staff Group,model_account_cash_request_retirement,cash_request_staff,1,1,1,0
+access_cash_retirement_hod,Cash Retirement HOD Group,model_account_cash_request_retirement,cash_request_hod,1,1,1,1
+access_cash_retirement_cashier,Cash Retirement Cashier Group,model_account_cash_request_retirement,cash_request_cashier,1,1,1,1
+access_cash_retirement_acc,Cash Retirement ACC Group,model_account_cash_request_retirement,cash_request_accountant,1,1,1,1
+access_cash_retirement_bm,Cash Retirement BM Group,model_account_cash_request_retirement,cash_request_bm,1,1,1,1
+access_cash_retirement_fm,Cash Retirement FM Group,model_account_cash_request_retirement,cash_request_fm,1,1,1,1
+access_cash_retirement_md,Cash Retirement MD Group,model_account_cash_request_retirement,cash_request_md,1,1,1,1
+
+access_cash_retirement_line_staff,Cash Retirement Line Staff Group,model_account_cash_request_retirement_lines,cash_request_staff,1,1,1,0
+access_cash_retirement_line_hod,Cash Retirement Line HOD Group,model_account_cash_request_retirement_lines,cash_request_hod,1,1,1,1
+access_cash_retirement_line_cashier,Cash Retirement Line Cashier Group,model_account_cash_request_retirement_lines,cash_request_cashier,1,1,1,1
+access_cash_retirement_line_acc,Cash Retirement Line ACC Group,model_account_cash_request_retirement_lines,cash_request_accountant,1,1,1,1
+access_cash_retirement_line_bm,Cash Retirement Line BM Group,model_account_cash_request_retirement_lines,cash_request_bm,1,1,1,1
+access_cash_retirement_line_fm,Cash Retirement Line FM Group,model_account_cash_request_retirement_lines,cash_request_fm,1,1,1,1
+access_cash_retirement_line_md,Cash Retirement Line MD Group,model_account_cash_request_retirement_lines,cash_request_md,1,1,1,1
+
+access_account_account_staff,Account Staff Group,account.model_account_account,cash_request_staff,1,0,0,0
+access_account_account_hod,Account HOD Group,account.model_account_account,cash_request_hod,1,0,0,0
+access_account_account_cashier,Account Cashier Group,account.model_account_account,cash_request_cashier,1,0,0,0
+access_account_account_acc,Account ACC Group,account.model_account_account,cash_request_accountant,1,0,0,0
+access_account_account_bm,Account BM Group,account.model_account_account,cash_request_bm,1,0,0,0
+access_account_account_fm,Account FM Group,account.model_account_account,cash_request_fm,1,1,1,1
+access_account_account_md,Account MD Group,account.model_account_account,cash_request_md,1,1,1,1
+
+access_account_move_staff,Account Move Staff Group,account.model_account_move,cash_request_staff,1,0,0,0
+access_account_move_hod,Account Move HOD Group,account.model_account_move,cash_request_hod,1,0,0,0
+access_account_move_cashier,Account Move Cashier Group,account.model_account_move,cash_request_cashier,1,0,0,0
+access_account_move_acc,Account Move ACC Group,account.model_account_move,cash_request_accountant,1,1,1,0
+access_account_move_bm,Account Move BM Group,account.model_account_move,cash_request_bm,1,0,0,0
+access_account_move_fm,Account Move FM Group,account.model_account_move,cash_request_fm,1,1,1,1
+access_account_move_md,Account Move MD Group,account.model_account_move,cash_request_md,1,1,1,1
+
+access_account_move_line_staff,Account Move Line Staff Group,account.model_account_move_line,cash_request_staff,1,0,0,0
+access_account_move_line_hod,Account Move Line HOD Group,account.model_account_move_line,cash_request_hod,1,0,0,0
+access_account_move_line_cashier,Account Move Line Cashier Group,account.model_account_move_line,cash_request_cashier,1,0,0,0
+access_account_move_line_acc,Account Move Line ACC Group,account.model_account_move_line,cash_request_accountant,1,1,1,0
+access_account_move_line_bm,Account Move Line BM Group,account.model_account_move_line,cash_request_bm,1,0,0,0
+access_account_move_line_fm,Account Move Line FM Group,account.model_account_move_line,cash_request_fm,1,1,1,1
+access_account_move_line_md,Account Move Line MD Group,account.model_account_move_line,cash_request_md,1,1,1,1

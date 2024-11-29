@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--Adding a salary rule for loan-->
+	<data noupdate="0">
+        <record id="hr_rule_staff_receivable_others" model="hr.salary.rule">
+            <field name="code">STAFF_RECOVERIES</field>
+            <field name="name">Staff Recoveries</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="amount_select">fix</field>
+            <field name="quantity">1.0</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="192"/>
+        </record>
+    </data>
+</odoo>

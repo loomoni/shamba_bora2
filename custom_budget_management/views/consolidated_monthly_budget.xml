@@ -1,0 +1,109 @@
+<odoo>
+    <record id="monthly_budget_consolidated_tree_view" model="ir.ui.view">
+      <field name="name">monthly.budget.consolidated.tree.view</field>
+      <field name="model">monthly.budget.consolidated</field>
+      <field name="arch" type="xml">
+          <tree string="Monthly Budget">
+              <field name="name"/>
+              <field name="date_start"/>
+              <field name="date_end"/>
+              <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="monthly_budget_consolidated_search_view" model="ir.ui.view">
+    <field name="name">monthly.budget.consolidated.search.view</field>
+     <field name="model">monthly.budget.consolidated</field>
+    <field name="arch" type="xml">
+        <search string="monthly budget search">
+            <field name="name" string="Version" filter_domain="[('name','ilike',self)]"/>
+            <group name="groupby">
+                <filter name="branch_budget_groupby" string="Branch" context="{'group_by': 'branch_id'}"/>
+            </group>
+        </search>
+    </field>
+    </record>
+
+   <record id="monthly_budget_consolidated_form_view" model="ir.ui.view">
+        <field name="name">monthly.budget.consolidated.form.view</field>
+        <field name="model">monthly.budget.consolidated</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_release" states="draft" string="Release" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm"/>
+                    <button name="button_reset" states="released,recommended,consolidated" string="Review" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+                    <button name="button_approve" states="consolidated" string="Approve" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_md"/>
+                    <button name="button_recommend" states="released" string="Recommend" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_bm"/>
+                    <button name="button_consolidate" states="recommended" string="Consolidate" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_fm"/>
+                    <button name="button_reject" states="released" string="Reject" type="object" class="btn-primary"
+                            groups="custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,released,recommended,consolidated,approved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="annual_budget_id" string="Annual Budget" options="{'no_create':True,'no_open':True}" />
+                        </group>
+                        <group>
+                            <field name="branch_id"/>
+                        </group>
+                    </group>
+                    <group string="Monthly Budget Period">
+                        <field name="date_start" placeholder="mm/dd/yy e.g 05/31/2020"/>
+                        <field name="date_end" placeholder="mm/dd/yy e.g 05/31/2020"/>
+                    </group>
+                    <notebook groups="custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md">
+                        <page string="Department Monthly Budgets" >
+                            <field name="monthly_budget_ids" attrs="{'readonly': True}">
+                                <tree>
+                                    <field name="department_id"/>
+                                    <field name="request_total" />
+                                    <field name="state" />
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="total_budget_amount" attrs="{'readonly': ['|', ('state', '=', 'approved'),('state', '=', 'rejected')]}"/>
+                                </div>
+                                <field name="total_budget_amount" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+   </record>
+
+    <record id="action_monthly_budget_consolidated" model="ir.actions.act_window">
+        <field name="name">Monthly Budgets</field>
+        <field name="res_model">monthly.budget.consolidated</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Ready to create a monthly budget?
+          </p><p>
+              Let's create a monthly budget.
+          </p>
+        </field>
+    </record>
+
+    <menuitem
+        parent="custom_budget_management.menu_root"
+        name="Monthly Budgets"
+        id="menu_monthly_budget_consolidated_list"
+        action="action_monthly_budget_consolidated"
+        sequence="4"
+        groups="custom_budget_management.budget_bm,custom_budget_management.budget_fm,custom_budget_management.budget_md"/>
+</odoo>
